@@ -1,0 +1,25 @@
+<div [formGroup]="formGroup">
+    <nz-form-item>
+        <ng-container *ngIf="required; else noAsterisk">
+            <nz-form-label [nzFor]="controlName" appAsterisk>
+                {{ label }}
+            </nz-form-label>
+        </ng-container>
+        <ng-template #noAsterisk>
+            <nz-form-label [nzFor]="controlName">
+                {{ label }}
+            </nz-form-label>
+        </ng-template>
+        <nz-form-control>
+            <nz-select [id]="controlName" [formControlName]="controlName" [nzBackdrop]="true" nzShowSearch
+                [nzPlaceHolder]="'Select ' + label">
+                <nz-option *ngFor="let item of dataList" [nzValue]="item[valueKey]"
+                    [nzLabel]="item[labelKey]"></nz-option>
+            </nz-select>
+            <ng-container
+                *ngIf="formGroup.get(controlName)?.invalid && (formGroup.get(controlName)?.dirty || formGroup.get(controlName)?.touched)">
+                <div class="error-text">{{ label }} is required.</div>
+            </ng-container>
+        </nz-form-control>
+    </nz-form-item>
+</div>

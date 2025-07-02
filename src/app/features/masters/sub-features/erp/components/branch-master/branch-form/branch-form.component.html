@@ -1,0 +1,203 @@
+<ng-container *ngIf="operationType === OperationType.Create || operationType === OperationType.Edit">
+    <div class="drawer-body">
+        <form [formGroup]="branchForm" nz-form [nzLayout]="'vertical'">
+            <div nz-row [nzGutter]="12">
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'branchCode'" appAsterisk>Branch Code</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="branchCode" name="branchCode" placeholder="Enter branch code"  
+                            [ngClass]="operationType === OperationType.Edit?'read-only':''"  [readOnly]="operationType === OperationType.Edit"
+                                formControlName="branchCode" />
+                            <ng-container
+                                *ngIf="branchForm.controls['branchCode']?.invalid && (branchForm.controls['branchCode']?.dirty || branchForm.controls['branchCode']?.touched)">
+                                <div class="error-text" *ngIf="branchForm.controls['branchCode']?.errors?.['required']">
+                                    Branch code is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'branchName'" appAsterisk>Branch Name</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="branchName" name="branchName" placeholder="Enter branch name"
+                                formControlName="branchName" />
+                            <ng-container
+                                *ngIf="branchForm.controls['branchName']?.invalid && (branchForm.controls['branchName']?.dirty || branchForm.controls['branchName']?.touched)">
+                                <div class="error-text" *ngIf="branchForm.controls['branchName']?.errors?.['required']">
+                                    Branch name is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'branchType'" appAsterisk>Branch Type</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="branchType" name="branchType" placeholder="Enter branch type"
+                                formControlName="branchType" />
+                            <ng-container
+                                *ngIf="branchForm.controls['branchType']?.invalid && (branchForm.controls['branchType']?.dirty || branchForm.controls['branchType']?.touched)">
+                                <div class="error-text" *ngIf="branchForm.controls['branchType']?.errors?.['required']">
+                                    Branch type is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'companyName'" appAsterisk>Company</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="companyName" name="companyName" placeholder="Enter Company Name"
+                                formControlName="companyName" />
+                            <ng-container
+                                *ngIf="branchForm.controls['companyName']?.invalid && (branchForm.controls['companyName']?.dirty || branchForm.controls['companyName']?.touched)">
+                                <div class="error-text"
+                                    *ngIf="branchForm.controls['companyName']?.errors?.['required']">
+                                    Company is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <app-dynamic-dropdown [formGroup]="branchForm" controlName="countryCode" label="Country"
+                        dropdownType="country" sourceType="parent" valueKey="countryCode" labelKey="countryName"
+                        [required]="true"></app-dynamic-dropdown>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <app-dynamic-dropdown [formGroup]="branchForm" controlName="stateCode" label="State"
+                        dropdownType="state" sourceType="child" valueKey="value" labelKey="text"
+                        [parentValue]="branchForm.get('countryCode')?.value" [required]="true"></app-dynamic-dropdown>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <app-dynamic-dropdown [formGroup]="branchForm" controlName="cityCode" label="City"
+                        dropdownType="city" sourceType="child" valueKey="value" labelKey="text"
+                        [parentValue]="branchForm.get('stateCode')?.value" [required]="true"></app-dynamic-dropdown>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'addr1'" appAsterisk>Address Line 1</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="addr1" name="addr1" placeholder="Enter address line 1"
+                                formControlName="addr1" />
+                            <ng-container
+                                *ngIf="branchForm.controls['addr1']?.invalid && (branchForm.controls['addr1']?.dirty || branchForm.controls['addr1']?.touched)">
+                                <div class="error-text" *ngIf="branchForm.controls['addr1']?.errors?.['required']">
+                                    Address line 1 is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'addr2'" appAsterisk>Address Line 2</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="addr2" name="addr2" placeholder="Enter address line 2"
+                                formControlName="addr2" />
+                        </nz-form-control>
+                        <ng-container
+                            *ngIf="branchForm.controls['addr2']?.invalid && (branchForm.controls['addr2']?.dirty || branchForm.controls['addr2']?.touched)">
+                            <div class="error-text" *ngIf="branchForm.controls['addr2']?.errors?.['required']">
+                                Address line 2 is required.</div>
+                        </ng-container>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'addr3'">Address Line 3</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="addr3" name="addr3" placeholder="Enter address line 3"
+                                formControlName="addr3" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'postCode'" appAsterisk>Postal Code</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="postCode" name="postCode" placeholder="Enter postal code"
+                                formControlName="postCode" />
+                            <ng-container
+                                *ngIf="branchForm.controls['postCode']?.invalid && (branchForm.controls['postCode']?.dirty || branchForm.controls['postCode']?.touched)">
+                                <div class="error-text" *ngIf="branchForm.controls['postCode']?.errors?.['required']">
+                                    Postal code is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'telNo'" appAsterisk>Office Ph. No</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="telNo" name="telNo" placeholder="Enter office phone number"
+                                formControlName="telNo" />
+                            <ng-container
+                                *ngIf="branchForm.controls['telNo']?.invalid && (branchForm.controls['telNo']?.dirty || branchForm.controls['telNo']?.touched)">
+                                <div class="error-text" *ngIf="branchForm.controls['telNo']?.errors?.['required']">
+                                    Office phone no is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'extNo'" appAsterisk>Ext. No</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="extNo" name="extNo" placeholder="Enter office extension number"
+                                formControlName="extNo" />
+                            <ng-container
+                                *ngIf="branchForm.controls['extNo']?.invalid && (branchForm.controls['extNo']?.dirty || branchForm.controls['extNo']?.touched)">
+                                <div class="error-text" *ngIf="branchForm.controls['extNo']?.errors?.['required']">
+                                    Extension Number is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'faxNo'" appAsterisk>Fax. No</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="faxNo" name="faxNo" placeholder="Enter fax number"
+                                formControlName="faxNo" />
+                            <ng-container
+                                *ngIf="branchForm.controls['faxNo']?.invalid && (branchForm.controls['faxNo']?.dirty || branchForm.controls['faxNo']?.touched)">
+                                <div class="error-text" *ngIf="branchForm.controls['faxNo']?.errors?.['required']">
+                                    Fax Number is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'emailId'" appAsterisk>Email Address</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="emailId" name="emailId" placeholder="Enter email address"
+                                formControlName="emailId" />
+                            <ng-container
+                                *ngIf="branchForm.controls['emailId']?.invalid && (branchForm.controls['emailId']?.dirty || branchForm.controls['emailId']?.touched)">
+                                <div class="error-text" *ngIf="branchForm.controls['emailId']?.errors?.['required']">
+                                    Email address is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'activeStatus'">Status</nz-form-label>
+                        <nz-form-control>
+                            Inactive <nz-switch id="activeStatus" name="activeStatus" formControlName="activeStatus"
+                                class="nz-switch"></nz-switch> Active
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="drawer-footer">
+        <button nz-button nzType="primary" class="cancel_btn" (click)="onCancel()">Cancel</button>
+        <button nz-button nzType="primary" class="reset_btn" (click)="onReset()">Reset</button>
+        <button nz-button nzType="primary" class="submit_btn" (click)="onSubmit()"
+            [disabled]="branchForm.invalid">{{operationType === OperationType.Edit ? 'Update': 'Submit'}}</button>
+    </div>
+</ng-container>

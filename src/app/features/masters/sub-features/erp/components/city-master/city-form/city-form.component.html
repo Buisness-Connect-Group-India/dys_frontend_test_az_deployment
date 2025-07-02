@@ -1,0 +1,55 @@
+<ng-container *ngIf="operationType === OperationType.Create || operationType === OperationType.Edit">
+    <div class="drawer-body">
+        <form [formGroup]="cityForm" nz-form [nzLayout]="'vertical'">
+            <div nz-row [nzGutter]="24">
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="12">
+                    <nz-form-item>
+                        <nz-form-label nzFor="cityCode" appAsterisk>
+                            City Code
+                        </nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="cityCode" formControlName="cityCode" placeholder="Enter City Code"
+                                [ngClass]="operationType === OperationType.Edit?'read-only':''"
+                                [readOnly]="operationType === OperationType.Edit" />
+                            <ng-container
+                                *ngIf="cityForm.controls['cityCode']?.invalid && (cityForm.controls['cityCode']?.dirty || cityForm.controls['cityCode']?.touched)">
+                                <div class="error-text">City code is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="12">
+                    <nz-form-item>
+                        <nz-form-label nzFor="cityName" appAsterisk>
+                            City Name
+                        </nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="cityName" formControlName="cityName" placeholder="Enter City Name" />
+                            <ng-container
+                                *ngIf="cityForm.controls['cityName']?.invalid && (cityForm.controls['cityName']?.dirty || cityForm.controls['cityName']?.touched)">
+                                <div class="error-text">City name is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="12">
+                    <app-dynamic-dropdown [formGroup]="cityForm" controlName="countryCode" label="Country"
+                        dropdownType="country" sourceType="parent" valueKey="countryCode" labelKey="countryName"
+                        [required]="true"></app-dynamic-dropdown>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="12">
+                    <app-dynamic-dropdown [formGroup]="cityForm" controlName="stateCode" label="State"
+                        dropdownType="state" sourceType="child" valueKey="value" labelKey="text"
+                        [parentValue]="cityForm.get('countryCode')?.value" [required]="true"></app-dynamic-dropdown>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="medium-drawer-footer">
+        <button nz-button nzType="primary" class="cancel_btn" (click)="onCancel()">Cancel</button>
+        <button nz-button nzType="primary" class="reset_btn" (click)="onReset()">Reset</button>
+        <button nz-button nzType="primary" class="submit_btn" (click)="onSubmit()"
+            [disabled]="cityForm.invalid">{{operationType ===
+            OperationType.Edit ? 'Update': 'Submit'}}</button>
+    </div>
+</ng-container>

@@ -1,0 +1,9 @@
+<div class="table-footer">
+    <div class="record-info">
+        Showing {{ getStartRecord() }}–{{ getEndRecord() }} of {{ pagination.total }} records
+    </div>
+    <nz-pagination [nzPageIndex]="pagination.pageIndex" [nzPageSize]="pagination.pageSize" [nzTotal]="pagination.total"
+        [nzShowSizeChanger]="true" (nzPageIndexChange)="pageIndexChange.emit($event)"
+        (nzPageSizeChange)="pageSizeChange.emit($event)">
+    </nz-pagination>
+</div>

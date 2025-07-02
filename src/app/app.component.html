@@ -1,0 +1,19 @@
+<nz-layout class="app-layout" *ngIf="isloggedUser">
+<!-- HEADER -->
+ <app-header [isCollapsed]="isCollapsed" (toggle)="toggleCollapsed()"></app-header>
+  <nz-layout class="inner-layout">
+    <!-- OVERLAY (Mobile only) -->
+    <!-- <div  *ngIf="isMobile && !isCollapsed" (click)="closeSidebar()"></div> -->
+    <!-- SIDEBAR -->
+    <app-sidebar *ngIf="(!isCollapsed && isMobile) || !isMobile" [isCollapsed]="!isMobile && isCollapsed"
+      [isMobile]="isMobile" (collapseSidebar)="handleSidebarCollapse($event)">
+    </app-sidebar>
+
+    <!-- CONTENT -->
+    <nz-content class="inner-content">
+      <router-outlet></router-outlet>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
+<!-- Login page fallback -->
+<router-outlet *ngIf="!isloggedUser"></router-outlet>

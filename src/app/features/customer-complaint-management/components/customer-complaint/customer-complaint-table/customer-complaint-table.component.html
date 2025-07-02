@@ -1,0 +1,178 @@
+<app-column-customizer [(isVisible)]="columnCustomizerService.isCustomizerVisible" [columns]="tableColumns"
+  (columnsChange)="tableColumns = columnCustomizerService.updateColumns($event, tableColumns)"
+  (cancel)="columnCustomizerService.closeCustomizer()" />
+<nz-table #customerTable nzBordered [nzTitle]="tableHeader" nzSize="middle" [nzFooter]="tableFooter" *ngIf="isShowGrid"
+  [nzData]="complaints" [nzScroll]="{ x: 'max-content',  y: 'calc(100vh - 280px)'  }" [nzShowPagination]="false"
+  [nzFrontPagination]="false" [nzPageSize]="pagination.pageSize" [nzTotal]="pagination.total"
+  [nzPageIndex]="pagination.pageIndex" [nzShowSizeChanger]="true" (nzPageSizeChange)="onPageSizeChange($event)"
+  (nzPageIndexChange)="onPageIndexChange($event)">
+  <thead>
+    <tr>
+      @for (col of tableColumns; track col.key) {
+      @if(col.default){
+      <th [nzShowSort]="col.sortable" [nzSortFn]="col.sortable ? true : null" [style.width.px]="col.width"
+        [nzSortOrder]="col.sortOrder" [nzSortFn]="col.sortFn" [nzSortDirections]="col.sortDirections"
+        [nzFilterMultiple]="col.filterMultiple" [nzFilters]="col.filters" [nzFilterFn]="col.filterFn">
+        {{ col.name }}
+      </th>
+      }
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of customerTable.data; track item.callId) {
+    <tr>
+      @for (col of tableColumns; track col.key) {
+      @if (col.default) {
+      <td [style.width.px]="col.width">
+        <ng-container [ngSwitch]="col.value">
+          @switch (col.value) {
+          @case ('callId') {
+          <span class="view-details-url" (click)="toggleViewMore(item)">
+            {{ item[col.value] }}
+          </span>
+          }
+          @case('regDate'){
+          {{item[col.value]|date :'dd-MM-yyyy h:mm a'}}
+          }
+          @case('status') {
+          <span [ngClass]="item.status == 'OP' ? 'inactive-status' : 'active-status'">
+            {{ item[col.value] === 'CL' ? 'Close' : (item[col.value] === 'OP' ? 'Open' : '') }}
+          </span>
+          }
+
+          @default {
+          {{ columnCustomizerService.getColumnValue(item, col.value) }}
+          }
+          }
+        </ng-container>
+      </td>
+      }
+      }
+    </tr>
+    }
+  </tbody>
+</nz-table>
+<ng-template #tableHeader>
+  <div class="table-header">
+    <h3 class="table-desktop-title">Customer Complaint Management </h3>
+    <h3 class="table-mobile-title">CCM</h3>
+    <div class="table-controls">
+      <div class="search-container" [class.show-search]="searchVisible">
+        <nz-input-group [nzSuffix]="searchIcon" class=" search-input-wrapper">
+          <input class="search-input-group" type="text" nz-input placeholder="Search" [(ngModel)]="searchValue"
+            (ngModelChange)="handleSearchChange()" />
+          <ng-template #searchIcon>
+            <i nz-icon nzType="search" (click)="searchVisible = !searchVisible"></i>
+          </ng-template>
+        </nz-input-group>
+        <button *ngIf="!searchVisible" nz-button nzType="text" class="search-toggle" (click)="searchVisible = true">
+          <i nz-icon nzType="search"></i>
+        </button>
+      </div>
+      @if(isShowGrid){
+      <button nz-button nzType="text" nzSize="large" (click)="columnCustomizerService.openCustomizer()" *ngIf="!searchVisible">
+        <nz-icon nzType="setting" nzTheme="outline" />
+      </button>
+      }
+      <button nz-button nzType="text" (click)="toggleFilterPanel()" *ngIf="!searchVisible">
+        <nz-icon nzType="filter" nzTheme="outline"></nz-icon>
+      </button>
+
+      <button nz-button nzType="text"  nzSize="large" nz-dropdown nzTrigger="click"  *ngIf="!searchVisible" [nzPlacement]="'bottomRight'"
+        [nzDropdownMenu]="statusMenu">
+        <nz-icon nzType="bars" nzTheme="outline" />
+      </button>
+      <nz-dropdown-menu #statusMenu="nzDropdownMenu">
+        <ul class="medium-dropdown-menu" nz-menu>
+          @for (item of statusOptions; track item.value) {
+          <li nz-menu-item>
+            <span class="menu-icon-label">
+               <span>O</span>
+              <span class="menu-label-text">{{ item.label }}</span>
+            </span>
+          </li>
+          }
+        </ul>
+      </nz-dropdown-menu>
+      <button nz-button nzType="text" nz-dropdown nzTrigger="click" [nzPlacement]="'bottomRight'"
+        [nzDropdownMenu]="createMenu">
+        <i nz-icon nzType="plus"></i>
+      </button>
+      <nz-dropdown-menu #createMenu="nzDropdownMenu">
+        <ul class="medium-dropdown-menu" nz-menu>
+          @for (item of customerComplaintMenuItems; track item.target) {
+          <li nz-menu-item (click)="openForm(item.action,item.target)">
+            <span class="menu-icon-label">
+              <nz-icon [nzType]="item.icon" nzTheme="outline"></nz-icon>
+              <span class="menu-label-text">{{ item.label }}</span>
+            </span>
+          </li>
+          }
+        </ul>
+      </nz-dropdown-menu>
+      <button nz-button nzType="text" (click)="setGridView(true)">
+        <nz-icon nzType="table" nzTheme="outline" />
+      </button>
+      <button nz-button nzType="text" (click)="setGridView(false)">
+        <nz-icon nzType="appstore" nzTheme="outline" />
+      </button>
+    </div>
+
+  </div>
+  @if(filterPanelOpen){
+  <app-dynamic-filter [fields]="filterFields" (filter)="applyFilter($event)"></app-dynamic-filter>
+  }
+</ng-template>
+<ng-template #tableFooter>
+  <app-pagination-footer [pagination]="pagination" (pageIndexChange)="onPageIndexChange($event)"
+    (pageSizeChange)="onPageSizeChange($event)">
+  </app-pagination-footer>
+</ng-template>
+@if (!isShowGrid) {
+<div class="sticky-header">
+  <ng-container [ngTemplateOutlet]="tableHeader"></ng-container>
+</div>
+<div nz-row>
+  @for (item of complaints; track item.callId) {
+  <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+    <nz-card class="main-cards">
+      <div nz-row>
+        <div nz-col nzSpan="20" class="complaint-id-text">
+          #{{ item.callId }}
+        </div>
+        <div nz-col nzSpan="4" class="complaint-card-text">
+          <span [ngClass]="item.status == 'OP' ? 'inactive-status' : 'active-status'">{{item.status === 'CL' ? 'Close' :
+            item.status === 'OP' ? 'Open' : '' }}</span>
+        </div>
+        <div nz-col nzSpan="24">
+          <nz-icon nzType="transaction" nzTheme="outline" />
+          {{ item.product}}
+        </div>
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12" [nzLg]="12" [nzXl]="12">
+          <nz-icon nzType="mobile" nzTheme="outline" />
+          {{ item.mobileNo }}
+        </div>
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12" [nzLg]="12" [nzXl]="12">
+          <nz-icon nzType="calendar" nzTheme="outline" />
+          {{ item.regDate |date :'dd-MM-yyyy h:mm a' }}
+        </div>
+        <div nz-col nzSpan="24">
+          <nz-icon nzType="code-sandbox" nzTheme="outline" />
+          {{ item.address }}
+        </div>
+        <div nz-col nzSpan="24">
+          <nz-icon nzType="aim" nzTheme="outline" />
+          {{ item.desc }}
+        </div>
+      </div>
+      <div nz-row nzJustify="end">
+        <div nz-col class="view-more-text" (click)="toggleViewMore(item)">
+          View More <nz-icon nzType="arrows-alt" nzTheme="outline" />
+        </div>
+      </div>
+    </nz-card>
+  </div>
+  }
+</div>
+}

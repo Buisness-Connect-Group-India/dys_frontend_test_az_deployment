@@ -1,0 +1,21 @@
+<div class="download-template-btn-wrapper">
+    <button nz-button nzType="primary">
+        <nz-icon nzType="download"></nz-icon>
+        <span class="download-btn-text">Download Template</span>
+    </button>
+</div>
+<div class="upload-container-wrapper">
+    <div class="upload-container">
+        <nz-upload nzType="drag" [nzMultiple]="true" nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            (nzChange)="handleChange($event)">
+            <p class="ant-upload-drag-icon">
+                <nz-icon nzType="inbox"></nz-icon>
+            </p>
+            <h3 class="upload-title">Upload File</h3>
+            <p class="ant-upload-text">Click or drag file to this area to upload</p>
+            <p class="ant-upload-hint">
+                Supported file extensions: <strong>.xls, .xlsx, .csv</strong>
+            </p>
+        </nz-upload>
+    </div>
+</div>

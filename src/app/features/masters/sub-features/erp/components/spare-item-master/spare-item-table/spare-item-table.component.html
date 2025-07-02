@@ -1,0 +1,147 @@
+<app-column-customizer [(isVisible)]="columnCustomizerService.isCustomizerVisible" [columns]="tableColumns"
+  (columnsChange)="tableColumns = columnCustomizerService.updateColumns($event, tableColumns)"
+  (cancel)="columnCustomizerService.closeCustomizer()" />
+<nz-table #spareItemTable nzBordered [nzTitle]="tableHeader" nzSize="middle" [nzFooter]="tableFooter"
+  [nzData]="spareItems" [nzScroll]="{ x: 'max-content', y: '540px' }" [nzShowPagination]="false"
+  [nzFrontPagination]="false" [nzPageSize]="pagination.pageSize" [nzTotal]="pagination.total"
+  [nzPageIndex]="pagination.pageIndex" [nzShowSizeChanger]="true" (nzPageSizeChange)="onPageSizeChange($event)"
+  (nzPageIndexChange)="onPageIndexChange($event)">
+  <thead>
+    <tr>
+      @for (col of tableColumns; track col.key) {
+      @if(col.default){
+      <th [nzShowSort]="col.sortable" [nzSortFn]="col.sortable ? true : null" [style.width.px]="col.width"
+        [nzSortOrder]="col.sortOrder" [nzSortFn]="col.sortFn" [nzSortDirections]="col.sortDirections"
+        [nzFilterMultiple]="col.filterMultiple" [nzFilters]="col.filters" [nzFilterFn]="col.filterFn">
+        {{ col.name }}
+      </th>
+      }
+      }
+      <th nzRight class="actions-column">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of spareItemTable.data; track item.spItemCode) {
+    <tr>
+      @for (col of tableColumns; track col.key) {
+      @if (col.default) {
+      <td [style.width.px]="col.width">
+        <ng-container [ngSwitch]="col.value">
+          @switch (col.value) {
+          @case ('updatedOn') {
+          {{ item.updatedOn | date: 'dd-MM-yyyy h:mm a' }}
+          }
+          @default {
+          {{ columnCustomizerService.getColumnValue(item, col.value) }}
+          }
+          }
+        </ng-container>
+      </td>
+      }
+      }
+      <td nzRight class="actions-column">
+        <!-- Desktop Action Icons -->
+        <div class="table-actions desktop-actions">
+          <span class="edit_icon" (click)="openForm(OperationType.Edit, item)">
+            <nz-icon nzType="edit" nzTheme="fill"></nz-icon>
+          </span>
+          <span class="delete_icon" (click)="deleteSpareItem(item)">
+            <nz-icon nzType="delete" nzTheme="fill"></nz-icon>
+          </span>
+        </div>
+
+        <!-- Mobile Dropdown Actions -->
+        <div class="table-actions mobile-actions">
+          <button nzType="default" nz-button nz-dropdown nzTrigger="click" [nzPlacement]="'bottomRight'"
+            [nzDropdownMenu]="menu">
+            <nz-icon nzType="more" nzTheme="outline"></nz-icon>
+          </button>
+
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu class="medium-dropdown-menu">
+              <li class="menu-icon-label" nz-menu-item (click)="openForm(OperationType.Edit, item)">
+                <nz-icon class="edit_icon" nzType="edit" nzTheme="fill"></nz-icon>
+                <span class="menu-label-text">Edit</span>
+              </li>
+              <li class="menu-icon-label" nz-menu-item (click)="deleteSpareItem(item)">
+                <nz-icon class="delete_icon" nzType="delete" nzTheme="fill"></nz-icon>
+                <span class="menu-label-text">Delete</span>
+              </li>
+            </ul>
+          </nz-dropdown-menu>
+        </div>
+      </td>
+    </tr>
+    }
+  </tbody>
+</nz-table>
+<ng-template #tableHeader>
+  <div class="table-header">
+    <h3 class="table-title">Spare Item</h3>
+    <div class="table-controls">
+      <div class="search-container" [class.show-search]="searchVisible">
+        <nz-input-group [nzSuffix]="searchIcon" class=" search-input-wrapper">
+          <input class="search-input-group" type="text" nz-input placeholder="Search" [(ngModel)]="searchValue"
+            (ngModelChange)="handleSearchChange()" />
+          <ng-template #searchIcon>
+            <i nz-icon nzType="search" (click)="searchVisible = !searchVisible"></i>
+          </ng-template>
+        </nz-input-group>
+        <button *ngIf="!searchVisible" nz-button nzType="text" class="search-toggle" (click)="searchVisible = true">
+          <i nz-icon nzType="search"></i>
+        </button>
+      </div>
+      <button nz-button nzType="text" nzSize="large" (click)="columnCustomizerService.openCustomizer()">
+        <nz-icon nzType="setting" nzTheme="outline" />
+      </button>
+      <!-- Visible on desktop only -->
+      <button nz-button nz-dropdown nzTrigger="click" [nzPlacement]="'bottomRight'" [nzDropdownMenu]="exportMenu"
+        class="export-btn-desktop">
+        <span class="export-text">Export</span>
+        <nz-icon nzType="down"></nz-icon>
+      </button>
+      <!--Visible on mobile/tablet only -->
+      <nz-icon nzType="export" nzTheme="outline" class="export-icon-mobile" nz-dropdown nzTrigger="click"
+        [nzPlacement]="'bottomRight'" [nzDropdownMenu]="exportMenu" />
+      <nz-dropdown-menu #exportMenu="nzDropdownMenu">
+        <ul class="medium-dropdown-menu" nz-menu>
+          @for (option of sharedService.exportOptions; track option.label) {
+          <li nz-menu-item (click)="exportAs(option.label)">
+            <span class="menu-icon-label">
+              <nz-icon [nzType]="option.icon" nzTheme="outline"></nz-icon>
+              <span class="menu-label-text">{{ option.label }}</span>
+            </span>
+          </li>
+          }
+        </ul>
+      </nz-dropdown-menu>
+      <button nz-button nzType="text" (click)="toggleFilterPanel()">
+        <nz-icon nzType="filter" nzTheme="outline"></nz-icon>
+      </button>
+      <button nz-button nzType="text" nz-dropdown nzTrigger="click" [nzPlacement]="'bottomRight'"
+        [nzDropdownMenu]="createMenu">
+        <i nz-icon nzType="plus"></i>
+      </button>
+      <nz-dropdown-menu #createMenu="nzDropdownMenu">
+        <ul class="medium-dropdown-menu" nz-menu>
+          @for (item of sharedService.createMenuItems; track item.action) {
+          <li nz-menu-item (click)="openForm(item.action)">
+            <span class="menu-icon-label">
+              <nz-icon [nzType]="item.icon" nzTheme="outline"></nz-icon>
+              <span class="menu-label-text">{{ item.label }}</span>
+            </span>
+          </li>
+          }
+        </ul>
+      </nz-dropdown-menu>
+    </div>
+  </div>
+  @if(filterPanelOpen){
+  <app-dynamic-filter [fields]="filterFields" (filter)="applyFilter($event)"></app-dynamic-filter>
+  }
+</ng-template>
+<ng-template #tableFooter>
+  <app-pagination-footer [pagination]="pagination" (pageIndexChange)="onPageIndexChange($event)"
+    (pageSizeChange)="onPageSizeChange($event)">
+  </app-pagination-footer>
+</ng-template>

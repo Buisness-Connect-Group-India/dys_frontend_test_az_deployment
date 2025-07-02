@@ -1,0 +1,34 @@
+<ng-container *ngIf="operationType === OperationType.Create || operationType === OperationType.Edit">
+  <div class="drawer-body">
+    <form [formGroup]="branchGroupForm" nz-form [nzLayout]="'vertical'">
+      <div nz-row [nzGutter]="12">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]="24" [nzXl]="24">
+          <nz-form-item>
+            <nz-form-label nzFor="branchGrpCode" appAsterisk>Branch Group Code</nz-form-label>
+            <nz-form-control>
+              <input nz-input type="text" id="branchGrpCode" name="branchGrpCode" formControlName="branchGrpCode" 
+               [ngClass]="operationType === OperationType.Edit?'read-only':''"  [readOnly]="operationType === OperationType.Edit"
+                placeholder="Enter branch group code" />
+              <ng-container
+                *ngIf="branchGroupForm.controls['branchGrpCode']?.invalid && (branchGroupForm.controls['branchGrpCode']?.dirty || branchGroupForm.controls['branchGrpCode']?.touched)">
+                <div class="error-text">Branch group code is required.</div>
+              </ng-container>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]="24" [nzXl]="24">
+          <app-dynamic-dropdown [formGroup]="branchGroupForm" controlName="branchCode" label="Branch"
+            dropdownType="branch" sourceType="individual" valueKey="value" labelKey="text"
+            [required]="true"></app-dynamic-dropdown>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="small-drawer-footer">
+    <button nz-button nzType="primary" class="cancel_btn" (click)="onCancel()">Cancel</button>
+    <button nz-button nzType="primary" class="reset_btn" (click)="onReset()">Reset</button>
+    <button nz-button nzType="primary" class="submit_btn" (click)="onSubmit()"
+      [disabled]="branchGroupForm.invalid">{{operationType ===
+      OperationType.Edit ? 'Update': 'Submit'}}</button>
+  </div>
+</ng-container>

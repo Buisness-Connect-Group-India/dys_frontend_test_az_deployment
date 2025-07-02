@@ -1,0 +1,57 @@
+<div nz-row>
+    <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]="24" [nzXl]="24">
+        <nz-card class="cards">
+            @if(customerOverview; as data){
+            <nz-descriptions [nzColumn]="{ xxl: 2, xl: 2, lg: 2, md: 2, sm: 1, xs: 1 }" [nzLayout]="'vertical'" [nzColon]="false" nzTitle="Customer Overview">
+                <nz-descriptions-item nzTitle="Customer ID">
+                    {{ customerOverview.custId || '-' }}
+                </nz-descriptions-item>
+                <nz-descriptions-item nzTitle="Customer Name">
+                    {{
+                    (customerOverview.salutation || '') + ' ' +
+                    (customerOverview.firstName || '') + ' ' +
+                    (customerOverview.middleName || '')+ ' ' +
+                    (customerOverview.lastName || '')
+                    }}
+                </nz-descriptions-item>
+                <nz-descriptions-item nzTitle="Mobile No">
+                    {{ customerOverview.mobileNo || '-' }}
+                </nz-descriptions-item>
+                <nz-descriptions-item nzTitle="Email Address">
+                    {{ customerOverview.emailId || '-' }}
+                </nz-descriptions-item>
+                <nz-descriptions-item nzTitle="Customer Type">
+                    {{ customerOverview.ctype || '-' }}
+                </nz-descriptions-item>
+                <nz-descriptions-item nzTitle="Source Customer ID">
+                    {{ customerOverview.sourceCustId || '-' }}
+                </nz-descriptions-item>
+                <nz-descriptions-item nzTitle="Batch No">
+                    {{ customerOverview.batchNo || '-' }}
+                </nz-descriptions-item>
+                <nz-descriptions-item nzTitle="Status">
+                    <span [ngClass]="customerOverview.status === 'Y' ? 'active-status' : 'inactive-status'">
+                        {{ customerOverview.status === 'Y' ? 'Active' : 'Inactive' }}
+                    </span>
+                </nz-descriptions-item>
+                <!-- <nz-descriptions-item nzTitle="Sync to CRM">
+                    {{ customerOverview.syncToCrm.trim() || '-' }}
+                </nz-descriptions-item> -->
+                <nz-descriptions-item nzTitle="Registered By">
+                    {{ customerOverview.regBy || '-' }}
+                </nz-descriptions-item>
+                <!-- <nz-descriptions-item nzTitle="Registered Entity">
+                    {{ customerOverview.regByEnt || '-' }}
+                </nz-descriptions-item> -->
+                <nz-descriptions-item nzTitle="Updated By">
+                    {{ customerOverview.updatedBy || '-' }}
+                </nz-descriptions-item>
+            </nz-descriptions>
+            }@else{
+            <div>
+                No customer Overview available.
+            </div>
+            }
+        </nz-card>
+    </div>
+</div>

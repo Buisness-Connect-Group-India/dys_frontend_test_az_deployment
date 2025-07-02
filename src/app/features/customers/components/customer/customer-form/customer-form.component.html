@@ -1,0 +1,468 @@
+<ng-container *ngIf="operationType === OperationType.Create || operationType === OperationType.Edit">
+    <div class="drawer-body">
+        <form [formGroup]="customerDetailsForm" nz-form [nzLayout]="'vertical'" class="section-box">
+            <h3 class="section-header">Customer Details</h3>
+            <div nz-row [nzGutter]="12">
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Salutation</nz-form-label>
+                        <nz-form-control>
+                            <nz-select formControlName="salutation" nzPlaceHolder="Select Salutation">
+                                <nz-option *ngFor="let s of salutations" [nzValue]="s" [nzLabel]="s"></nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>First Name</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="firstName" placeholder="Enter First Name" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Middle Name</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="middleName" placeholder="Enter Middle Name" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Last Name</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="lastName" placeholder="Enter Last Name" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Mobile No.</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="mobileNo" placeholder="Enter Mobile Number" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Email ID</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="emailId" placeholder="Enter Email ID" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+            </div>
+        </form>
+        <form [formGroup]="serviceAddressForm" nz-form [nzLayout]="'vertical'" class="section-box">
+            <h3 class="section-header">Service Address Details</h3>
+            <div nz-row [nzGutter]="12">
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Salutation</nz-form-label>
+                        <nz-form-control>
+                            <nz-select formControlName="salutation" nzPlaceHolder="Select Salutation">
+                                <nz-option *ngFor="let s of salutations" [nzValue]="s" [nzLabel]="s"></nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>First Name</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="firstName" placeholder="Enter First Name" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Last Name</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="lastName" placeholder="Enter Last Name" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Address Line 1</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="addr1" placeholder="Enter Address Line 1" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Address Line 2</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="addr2" placeholder="Enter Address Line 2" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Address Line 3</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="addr3" placeholder="Enter Address Line 3" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Address Line 4</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="addr4" placeholder="Enter Address Line 4" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Address Line 5</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="addr5" placeholder="Enter Address Line 5" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Landmark</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="landmark" placeholder="Enter Landmark" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Country</nz-form-label>
+                        <nz-form-control>
+                            <nz-select formControlName="countryCode" nzPlaceHolder="Select Country">
+                                <nz-option *ngFor="let country of countries" [nzValue]="country.code"
+                                    [nzLabel]="country.name"></nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>State</nz-form-label>
+                        <nz-form-control>
+                            <nz-select formControlName="stateCode" nzPlaceHolder="Select State">
+                                <nz-option *ngFor="let state of states" [nzValue]="state.code"
+                                    [nzLabel]="state.name"></nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>City</nz-form-label>
+                        <nz-form-control>
+                            <nz-select formControlName="cityCode" nzPlaceHolder="Select City">
+                                <nz-option *ngFor="let city of cities" [nzValue]="city.code"
+                                    [nzLabel]="city.name"></nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Area</nz-form-label>
+                        <nz-form-control>
+                            <nz-select formControlName="areaCode" nzPlaceHolder="Select Area">
+                                <nz-option *ngFor="let area of areas" [nzValue]="area.code"
+                                    [nzLabel]="area.name"></nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Postal Code</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="postCode" placeholder="Enter Postal Code" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Mobile No.</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="mobileNo" placeholder="Enter Mobile Number" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Alternate Mobile No.</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="altMobileNo" placeholder="Enter Alt Mobile Number" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Email ID</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="emailId" placeholder="Enter Email ID" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Alternate Email ID</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="altEmailId" placeholder="Enter Alt Email ID" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Office Phone</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="offPhone" placeholder="Enter Office Phone" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Extension No.</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="offExtnNo" placeholder="Enter Extension No." />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Residence No.</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="resiNo" placeholder="Enter Residence No." />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Fax No.</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="faxNo" placeholder="Enter Fax No." />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+            </div>
+        </form>
+        <ng-container *ngIf="billingAddressVisible" style="width:100%">
+            <form [formGroup]="billingAddressForm" nz-form [nzLayout]="'vertical'" class="section-box">
+                <h3 class="section-header">Billing Address Details
+                    <button nz-button nzType="link"  class="copy-btn" 
+                        (click)="copyServiceToBilling()" >
+                        <nz-icon nzType="copy" nzTheme="outline" style="margin-right: 2px;"></nz-icon>
+                        Copy from service address
+                    </button>
+                </h3>
+                <div nz-row [nzGutter]="12">
+                    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                        <nz-form-item>
+                            <nz-form-label>Salutation</nz-form-label>
+                            <nz-form-control>
+                                <nz-select formControlName="salutation" nzPlaceHolder="Select Salutation">
+                                    <nz-option *ngFor="let s of salutations" [nzValue]="s" [nzLabel]="s"></nz-option>
+                                </nz-select>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                        <nz-form-item>
+                            <nz-form-label>First Name</nz-form-label>
+                            <nz-form-control>
+                                <input nz-input formControlName="firstName" placeholder="Enter First Name" />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                        <nz-form-item>
+                            <nz-form-label>Last Name</nz-form-label>
+                            <nz-form-control>
+                                <input nz-input formControlName="lastName" placeholder="Enter Last Name" />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                        <nz-form-item>
+                            <nz-form-label>Address Line 1</nz-form-label>
+                            <nz-form-control>
+                                <input nz-input formControlName="addr1" placeholder="Enter Address Line 1" />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                        <nz-form-item>
+                            <nz-form-label>Address Line 2</nz-form-label>
+                            <nz-form-control>
+                                <input nz-input formControlName="addr2" placeholder="Enter Address Line 2" />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                        <nz-form-item>
+                            <nz-form-label>Address Line 3</nz-form-label>
+                            <nz-form-control>
+                                <input nz-input formControlName="addr3" placeholder="Enter Address Line 3" />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                        <nz-form-item>
+                            <nz-form-label>Address Line 4</nz-form-label>
+                            <nz-form-control>
+                                <input nz-input formControlName="addr4" placeholder="Enter Address Line 4" />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                        <nz-form-item>
+                            <nz-form-label>Address Line 5</nz-form-label>
+                            <nz-form-control>
+                                <input nz-input formControlName="addr5" placeholder="Enter Address Line 5" />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                        <nz-form-item>
+                            <nz-form-label>Landmark</nz-form-label>
+                            <nz-form-control>
+                                <input nz-input formControlName="landmark" placeholder="Enter Landmark" />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                        <nz-form-item>
+                            <nz-form-label>Country</nz-form-label>
+                            <nz-form-control>
+                                <nz-select formControlName="countryCode" nzPlaceHolder="Select Country">
+                                    <nz-option *ngFor="let country of countries" [nzValue]="country.code"
+                                        [nzLabel]="country.name"></nz-option>
+                                </nz-select>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                        <nz-form-item>
+                            <nz-form-label>State</nz-form-label>
+                            <nz-form-control>
+                                <nz-select formControlName="stateCode" nzPlaceHolder="Select State">
+                                    <nz-option *ngFor="let state of states" [nzValue]="state.code"
+                                        [nzLabel]="state.name"></nz-option>
+                                </nz-select>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                        <nz-form-item>
+                            <nz-form-label>City</nz-form-label>
+                            <nz-form-control>
+                                <nz-select formControlName="cityCode" nzPlaceHolder="Select City">
+                                    <nz-option *ngFor="let city of cities" [nzValue]="city.code"
+                                        [nzLabel]="city.name"></nz-option>
+                                </nz-select>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                        <nz-form-item>
+                            <nz-form-label>Area</nz-form-label>
+                            <nz-form-control>
+                                <nz-select formControlName="areaCode" nzPlaceHolder="Select Area">
+                                    <nz-option *ngFor="let area of areas" [nzValue]="area.code"
+                                        [nzLabel]="area.name"></nz-option>
+                                </nz-select>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                        <nz-form-item>
+                            <nz-form-label>Postal Code</nz-form-label>
+                            <nz-form-control>
+                                <input nz-input formControlName="postCode" placeholder="Enter Postal Code" />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                        <nz-form-item>
+                            <nz-form-label>Mobile No.</nz-form-label>
+                            <nz-form-control>
+                                <input nz-input formControlName="mobileNo" placeholder="Enter Mobile Number" />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                        <nz-form-item>
+                            <nz-form-label>Alternate Mobile No.</nz-form-label>
+                            <nz-form-control>
+                                <input nz-input formControlName="altMobileNo" placeholder="Enter Alt Mobile Number" />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                        <nz-form-item>
+                            <nz-form-label>Email ID</nz-form-label>
+                            <nz-form-control>
+                                <input nz-input formControlName="emailId" placeholder="Enter Email ID" />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                        <nz-form-item>
+                            <nz-form-label>Alternate Email ID</nz-form-label>
+                            <nz-form-control>
+                                <input nz-input formControlName="altEmailId" placeholder="Enter Alt Email ID" />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                        <nz-form-item>
+                            <nz-form-label>Office Phone</nz-form-label>
+                            <nz-form-control>
+                                <input nz-input formControlName="offPhone" placeholder="Enter Office Phone" />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                        <nz-form-item>
+                            <nz-form-label>Extension No.</nz-form-label>
+                            <nz-form-control>
+                                <input nz-input formControlName="offExtnNo" placeholder="Enter Extension No." />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                        <nz-form-item>
+                            <nz-form-label>Residence No.</nz-form-label>
+                            <nz-form-control>
+                                <input nz-input formControlName="resiNo" placeholder="Enter Residence No." />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                        <nz-form-item>
+                            <nz-form-label>Fax No.</nz-form-label>
+                            <nz-form-control>
+                                <input nz-input formControlName="faxNo" placeholder="Enter Fax No." />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+            </form>
+        </ng-container>
+    </div>
+    <div class="drawer-footer-lg">
+        <button nz-button nzType="primary" class="cancel_btn" 
+            (click)="onCancel()">Cancel</button>
+        <button nz-button nzType="primary" class="reset_btn" (click)="onReset()">Reset</button>
+        <button nz-button [nzType]="billingAddressVisible ? 'default' : 'primary'"
+            [ngClass]="billingAddressVisible ? 'danger-button' : 'add-btn'" style="margin-right: 8px;"
+            (click)="toggleBillingAddress()">
+            {{ billingAddressVisible ? 'Remove Billing Adr' : 'Add Billing Address' }}
+        </button>
+        <button nz-button nzType="primary" class="submit_btn" (click)="onSubmit()">Submit</button>
+    </div>
+</ng-container>

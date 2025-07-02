@@ -1,0 +1,123 @@
+<ng-container *ngIf="operationType === OperationType.Create || operationType === OperationType.Edit">
+    <div class="drawer-body">
+        <form [formGroup]="spareItemForm" nz-form [nzLayout]="'vertical'">
+            <div nz-row [nzGutter]="12">
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label nzFor="spItemCode" appAsterisk>Spare Item Code</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input type="text" id="spItemCode" formControlName="spItemCode" name="spItemCode"
+                                placeholder="Enter spare item code" />
+                            <ng-container
+                                *ngIf="spareItemForm.controls['spItemCode']?.invalid && (spareItemForm.controls['spItemCode']?.dirty || spareItemForm.controls['spItemCode']?.touched)">
+                                <div class="error-text">Spare item code is required</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label nzFor="spItemDesc" appAsterisk>Spare Item Description</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="spItemDesc" formControlName="spItemDesc"
+                                name="spItemDesc" placeholder="Enter part description">
+                            <ng-container
+                                *ngIf="spareItemForm.controls['spItemDesc']?.invalid && (spareItemForm.controls['spItemDesc']?.dirty || spareItemForm.controls['spItemDesc']?.touched)">
+                                <div class="error-text">Spare item description is required</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label nzFor="uom" appAsterisk>UOM</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input type="text" id="uom" formControlName="uom" name="uom"
+                                placeholder="Enter unit of measure" />
+                            <ng-container
+                                *ngIf="spareItemForm.controls['uom']?.invalid && (spareItemForm.controls['uom']?.dirty || spareItemForm.controls['uom']?.touched)">
+                                <div class="error-text">Unit of measurement is required</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <app-dynamic-dropdown [formGroup]="spareItemForm" controlName="prodTypeCode" label="Product Type"
+                        dropdownType="prod_type" sourceType="individual" valueKey="value" labelKey="text"
+                        [required]="true">
+                    </app-dynamic-dropdown>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <app-dynamic-dropdown [formGroup]="spareItemForm" controlName="stockType" label="Stock Type"
+                        dropdownType="stock_type" sourceType="individual" valueKey="value" labelKey="text"
+                        [required]="true">
+                    </app-dynamic-dropdown>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label nzFor="minOrderQty" appAsterisk>Minimum Order Quantity</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input type="number" id="minOrderQty" formControlName="minOrderQty"
+                                name="minOrderQty" placeholder="Enter minimum order quantity" />
+                            <ng-container
+                                *ngIf="spareItemForm.controls['minOrderQty']?.invalid && (spareItemForm.controls['minOrderQty']?.dirty || spareItemForm.controls['minOrderQty']?.touched)">
+                                <div class="error-text">Minimum order quantity is required</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label nzFor="price" appAsterisk>Price</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input type="number" step="0.01" id="price" formControlName="price" name="price"
+                                placeholder="Enter price" />
+                        </nz-form-control>
+                        <ng-container
+                            *ngIf="spareItemForm.controls['price']?.invalid && (spareItemForm.controls['price']?.dirty || spareItemForm.controls['price']?.touched)">
+                            <div class="error-text">Price is required</div>
+                        </ng-container>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label nzFor="cost" appAsterisk>Cost</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input type="number" step="0.01" id="cost" formControlName="cost" name="cost"
+                                placeholder="Enter cost" />
+                            <ng-container
+                                *ngIf="spareItemForm.controls['cost']?.invalid && (spareItemForm.controls['cost']?.dirty || spareItemForm.controls['cost']?.touched)">
+                                <div class="error-text">Cost is required</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'isActive'">Status</nz-form-label>
+                        <nz-form-control>
+                            Inactive <nz-switch id="isActive" name="isActive" formControlName="isActive"
+                                class="nz-switch"></nz-switch> Active
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                 <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="16" [nzXl]="16">
+                    <nz-form-item>
+                        <nz-form-label nzFor="cost" appAsterisk>Remark</nz-form-label>
+                        <nz-form-control>
+                            <textarea nz-input type="text"  id="remarks" formControlName="remarks" name="remarks"
+                                placeholder="Enter Remark" ></textarea>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="drawer-footer">
+        <button nz-button nzType="primary" class="cancel_btn" (click)="onCancel()">Cancel</button>
+        <button nz-button nzType="primary" class="reset_btn" (click)="onReset()">Reset</button>
+        <button nz-button nzType="primary" class="submit_btn" (click)="onSubmit()"
+            [disabled]="spareItemForm.invalid">{{operationType ===
+            OperationType.Edit ? 'Update': 'Submit'}}</button>
+    </div>
+</ng-container>

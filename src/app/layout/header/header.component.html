@@ -1,0 +1,65 @@
+<nz-header>
+  <div class="header-content">
+    <div class="header-content__left">
+      <span class="header-content__menu-icon" (click)="onToggle()">
+        <nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></nz-icon>
+      </span>
+      <img src="images/atos-white-logo.svg" alt="Eviden Logo" class="header-content__logo " />
+    </div>
+
+    <!-- Right Section -->
+    <div class="header-content__right">
+      <!-- Desktop Complaint Button -->
+      <button nz-button class="header-content__complaint-btn desktop-only" (click)="navigateToCustomerComplaint()" >
+        Customer Complaint Management
+      </button>
+
+      <!-- Icons and Mobile Dropdown -->
+      <div class="header-content__icon-group">
+        <nz-icon nzType="bell" nzTheme="outline"></nz-icon>
+        <nz-icon nzType="question-circle" nzTheme="outline"></nz-icon>
+
+        <!-- Profile Dropdown -->
+        <span nz-dropdown nzTrigger="click" [nzPlacement]="'bottomRight'" [nzDropdownMenu]="menu">
+          <nz-icon nzType="user" nzTheme="outline"></nz-icon>
+        </span>
+
+        <!-- Profile Dropdown Menu -->
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu>
+            <strong>&nbsp;&nbsp;John Doe</strong><br />
+            <span>&nbsp;&nbsp;User</span>
+            <hr class="custom-hr" />
+            <li nz-menu-item>
+              <nz-icon nzType="user" nzTheme="outline"></nz-icon>
+              &nbsp;&nbsp;Profile
+            </li>
+            <li nz-menu-item>
+              <nz-icon nzType="lock" nzTheme="outline"></nz-icon>
+              &nbsp;&nbsp;Reset Password
+            </li>
+            <hr class="custom-hr" />
+            <li nz-menu-item (click)="logout()">
+              <nz-icon nzType="logout" nzTheme="outline"></nz-icon>
+              &nbsp;&nbsp;Logout
+            </li>
+          </ul>
+        </nz-dropdown-menu>
+
+        <!-- Mobile Dropdown for Complaint -->
+        <span nz-dropdown class="mobile-only" nzTrigger="click" [nzDropdownMenu]="complaintMenu" nzPlacement="bottomRight">
+          <nz-icon nzType="more" nzTheme="outline"></nz-icon>
+        </span>
+
+          <!-- Mobile Complaint Dropdown Menu -->
+        <nz-dropdown-menu #complaintMenu="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item routerLink="/customer-complaint-management">
+                Customer Complaint
+            </li>
+          </ul>
+        </nz-dropdown-menu>
+      </div>
+    </div>
+  </div>
+</nz-header>

@@ -1,0 +1,167 @@
+<ng-container *ngIf="operationType === OperationType.Create || operationType === OperationType.Edit">
+    <div class="drawer-body">
+        <form [formGroup]="retailerForm" nz-form [nzLayout]="'vertical'">
+            <div nz-row [nzGutter]="12">
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'retailerCode'" appAsterisk>Retailer Code</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="retailerCode" formControlName="retailerCode"
+                                [ngClass]="operationType === OperationType.Edit?'read-only':''"
+                                [readOnly]="operationType === OperationType.Edit" placeholder="Enter retailer code" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'retailerName'" appAsterisk>Retailer Name</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="retailerName" formControlName="retailerName"
+                                placeholder="Enter retailer name" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'contactPer1'" appAsterisk>Contact Person Name</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="contactPer1" formControlName="contactPer1"
+                                placeholder="Enter contact person name" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <app-dynamic-dropdown [formGroup]="retailerForm" controlName="branchCode" label="Branch"
+                        dropdownType="branch" sourceType="individual" valueKey="value" labelKey="text"
+                        [required]="true"></app-dynamic-dropdown>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'addr1'" appAsterisk>Address Line 1</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="addr1" placeholder="Enter address line 1" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'addr2'" appAsterisk>Address Line 2</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="addr2" placeholder="Enter address line 2" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'addr3'">Address Line 3</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="addr3" placeholder="Enter address line 3" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'landmark'" appAsterisk>Landmark</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="landmark" placeholder="Enter landmark" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <app-dynamic-dropdown [formGroup]="retailerForm" controlName="countryCode" label="Country"
+                        dropdownType="country" sourceType="parent" valueKey="countryCode" labelKey="countryName"
+                        [required]="true"></app-dynamic-dropdown>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <app-dynamic-dropdown [formGroup]="retailerForm" controlName="stateCode" label="State"
+                        dropdownType="state" sourceType="child" valueKey="value" labelKey="text"
+                        [parentValue]="retailerForm.get('countryCode')?.value" [required]="true"></app-dynamic-dropdown>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <app-dynamic-dropdown [formGroup]="retailerForm" controlName="cityCode" label="City"
+                        dropdownType="city" sourceType="child" valueKey="value" labelKey="text"
+                        [parentValue]="retailerForm.get('stateCode')?.value" [required]="true"></app-dynamic-dropdown>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'postCode'">Postal Code</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="postCode" placeholder="Enter postal code" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'offTelNo'">Office Phone No.</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="offTelNo" placeholder="Enter office phone number" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'offExtnNo'">Office Extension No.</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="offExtnNo" placeholder="Enter office extension number" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'resTelNo'">Residence Phone No.</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="resTelNo" placeholder="Enter residence phone number" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'mobileNo'" appAsterisk>Mobile No.</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="mobileNo" placeholder="Enter mobile number" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'fax'">Fax No.</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="fax" placeholder="Enter fax number" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'emailId'" appAsterisk>Email Id</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="emailId" placeholder="Enter email" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label [nzFor]="'altEmailId'">Alternate Email Id</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input formControlName="altEmailId" placeholder="Enter alternate email" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Status</nz-form-label>
+                        <nz-form-control>
+                            Inactive <nz-switch formControlName="activeStatus" class="nz-switch"></nz-switch> Active
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="drawer-footer">
+        <button nz-button nzType="primary" class="cancel_btn" (click)="onCancel()">Cancel</button>
+        <button nz-button nzType="primary" class="reset_btn" (click)="onReset()">Reset</button>
+        <button nz-button nzType="primary" class="submit_btn" (click)="onSubmit()"
+            [disabled]="retailerForm.invalid">{{operationType ===
+            OperationType.Edit ? 'Update': 'Submit'}}</button>
+    </div>
+</ng-container>

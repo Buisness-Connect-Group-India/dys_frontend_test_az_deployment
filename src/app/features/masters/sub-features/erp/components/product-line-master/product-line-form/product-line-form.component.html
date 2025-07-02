@@ -1,0 +1,67 @@
+<ng-container *ngIf="operationType === OperationType.Create || operationType === OperationType.Edit">
+    <div class="drawer-body">
+        <form [formGroup]="productLineForm" nz-form [nzLayout]="'vertical'">
+            <div nz-row [nzGutter]="12">
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="12">
+                    <nz-form-item>
+                        <nz-form-label nzFor="prodTypeCode" appAsterisk>
+                            Product Type Code
+                        </nz-form-label>
+                        <nz-form-control>
+                            <input nz-input type="text" id="prodTypeCode" name="prodTypeCode"
+                                [ngClass]="operationType === OperationType.Edit?'read-only':''"
+                                [readOnly]="operationType === OperationType.Edit" formControlName="prodTypeCode"
+                                placeholder="Enter Product Type Code" />
+                            <ng-container
+                                *ngIf="productLineForm.controls['prodTypeCode']?.invalid && (productLineForm.controls['prodTypeCode']?.dirty || productLineForm.controls['prodTypeCode']?.touched)">
+                                <div class="error-text">Product type code is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="12">
+                    <nz-form-item>
+                        <nz-form-label nzFor="prodTypeDesc" appAsterisk>
+                            Product Type Description
+                        </nz-form-label>
+                        <nz-form-control>
+                            <input nz-input type="text" id="prodTypeDesc" name="prodTypeDesc"
+                                formControlName="prodTypeDesc" placeholder="Enter Product Type Description" />
+                            <ng-container
+                                *ngIf="productLineForm.controls['prodTypeDesc']?.invalid && (productLineForm.controls['prodTypeDesc']?.dirty || productLineForm.controls['prodTypeDesc']?.touched)">
+                                <div class="error-text">Product type description is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="12">
+                    <app-dynamic-dropdown [formGroup]="productLineForm" controlName="category" label="Product Category"
+                        dropdownType="prod_category" sourceType="individual" valueKey="value" labelKey="text"
+                        [required]="true"></app-dynamic-dropdown>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="12">
+                    <nz-form-item>
+                        <nz-form-label nzFor="status" appAsterisk>Status</nz-form-label>
+                        <nz-form-control>
+                            <label>Inactive</label>
+                            <nz-switch id="status" name="status" formControlName="status" class="nz-switch"></nz-switch>
+                            <label>Active</label>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="drawer-footer">
+        <button nz-button nzType="primary" class="cancel_btn" (click)="onCancel()">
+            Cancel
+        </button>
+        <button nz-button nzType="primary" class="reset_btn" (click)="onReset()">
+            Reset
+        </button>
+        <button nz-button nzType="primary" class="submit_btn" (click)="onSubmit()" [disabled]="productLineForm.invalid">
+            {{operationType ===
+            OperationType.Edit ? 'Update': 'Submit'}}
+        </button>
+    </div>
+</ng-container>

@@ -1,0 +1,46 @@
+<ng-container *ngIf="operationType === OperationType.Create || operationType === OperationType.Edit">
+    <div class="drawer-body">
+        <form [formGroup]="brandForm" nz-form [nzLayout]="'vertical'">
+            <div nz-row [nzGutter]="12">
+                <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]="24" [nzXl]="24">
+                    <nz-form-item>
+                        <nz-form-label nzFor="brandCode" appAsterisk>
+                            Brand Code
+                        </nz-form-label>
+                        <nz-form-control>
+                            <input nz-input type="text" id="brandCode" name="brandCode" formControlName="brandCode"
+                             [ngClass]="operationType === OperationType.Edit?'read-only':''"
+                                [readOnly]="operationType === OperationType.Edit"
+                                placeholder="Enter brand code" />
+                            <ng-container
+                                *ngIf="brandForm.controls['brandCode']?.invalid && (brandForm.controls['brandCode']?.dirty || brandForm.controls['brandCode']?.touched)">
+                                <div class="error-text">Brand code is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]="24" [nzXl]="24">
+                    <nz-form-item>
+                        <nz-form-label nzFor="brandDesc">
+                            Brand Description
+                        </nz-form-label>
+                        <nz-form-control>
+                            <input nz-input type="text" id="brandDesc" name="brandDesc"
+                                formControlName="brandDesc" placeholder="Enter brand description" />
+                            <ng-container
+                                *ngIf="brandForm.controls['brandDesc']?.invalid && (brandForm.controls['brandDesc']?.dirty || brandForm.controls['brandDesc']?.touched)">
+                                <div class="error-text">Brand description is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="small-drawer-footer">
+        <button nz-button nzType="primary" class="cancel_btn" (click)="onCancel()">Cancel</button>
+        <button nz-button nzType="primary" class="reset_btn" (click)="onReset()">Reset</button>
+        <button nz-button nzType="primary" class="submit_btn" (click)="onSubmit()" [disabled]="brandForm.invalid">{{operationType ===
+            OperationType.Edit ? 'Update': 'Submit'}}</button>
+    </div>
+</ng-container>

@@ -1,0 +1,50 @@
+$color-dark: #002d3c;
+
+.complaint-list-item {
+    padding: 5px 10px;
+    cursor: pointer;
+    margin: 8px 0px;
+    @media (max-width: 576px) {
+    margin:  0px;
+    }
+
+}
+
+.doc-list-row {
+    padding-left: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.doc-icon {
+    padding-top: 6px;
+    font-size: 28px;
+    color: #1C7C9F;
+}
+
+.complaint-doc-list-item {
+    margin: 8px 0px;
+    padding: 5px 10px;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+}
+
+.complaint-list-item.active {
+    // background-color: #faece7;
+    font-weight: bold;
+    border-left: 3px solid  $color-dark;
+    box-shadow: 1px 1px 1px 0px #E2E8F0;
+    background-color: #E2E8F0;
+    color: $color-dark;
+    padding-left: 8px;
+    border-radius: 2px;
+}
+
+.complaint-list-item.active ::ng-deep .ant-list-item-meta-title {
+    color: $color-dark !important;
+}
+
+.list-icon {
+    margin-right: 3px;
+    font-size: 18px;
+}

@@ -1,0 +1,110 @@
+<div nz-row [nzGutter]="[8]">
+    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="12">
+        <nz-collapse [nzExpandIconPosition]="'end'" class="collapse-panel">
+            <nz-collapse-panel [nzExtra]="extraTpl0" #cd [nzHeader]="'Customer Details'"
+                [nzExpandedIcon]="expandedIcon0" [nzActive]="true">
+                <nz-descriptions [nzLayout]="'vertical'" [nzColon]="false"
+                    [nzColumn]="{ xxl: 2, xl: 2, lg: 2, md: 2, sm: 1, xs: 1 }">
+                    <nz-descriptions-item nzTitle="Customer ID">{{ complaintOverview?.customer?.id || '-'}}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Customer Name">{{ complaintOverview?.customer?.name || '-'}}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Mobile No">{{ complaintOverview?.customer?.mobile || '-'}}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Alternative Mobile No">{{ complaintOverview?.customer?.altMobile ||'-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Email Address">{{ complaintOverview?.customer?.email || '-'}}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Customer Type">{{ complaintOverview?.customer?.type || '-'  }}</nz-descriptions-item>
+                </nz-descriptions>
+                <ng-template #extraTpl0 class="view-more-text-arrow">
+                    {{cd.nzActive ?'View Less':'View More'}}
+                </ng-template>
+                <ng-template #expandedIcon0 let-active>
+                    <nz-icon nzType="up" nzTheme="outline" [nzRotate]="cd.nzActive ? 360 : 180"
+                        class="ant-collapse-arrow" />
+                </ng-template>
+            </nz-collapse-panel>
+        </nz-collapse>
+        <nz-collapse [nzExpandIconPosition]="'end'" class="collapse-panel">
+            <nz-collapse-panel [nzExtra]="extraTpl1" #Ca [nzHeader]="'Customer Address'"
+                [nzExpandedIcon]="expandedIcon1" [nzActive]="true">
+                <nz-descriptions [nzLayout]="'vertical'" [nzColon]="false"
+                    [nzColumn]="{ xxl: 2, xl: 2, lg: 2, md: 2, sm: 1, xs: 1 }">
+                    <nz-descriptions-item nzTitle="Customer Name">{{ complaintOverview?.address?.custName || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Address Line 1">{{ complaintOverview?.address?.addr1 || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Address Line 2">{{ complaintOverview?.address?.addr2 || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Address Line 3">{{ complaintOverview?.address?.addr3 || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Address Line 4">{{ complaintOverview?.address?.addr4 || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Address Line 5">{{ complaintOverview?.address?.addr5 || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Landmark">{{ complaintOverview?.address?.landmark || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Postal Code">{{ complaintOverview?.address?.postalCode || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="City">{{ complaintOverview?.address?.cityName || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="State">{{ complaintOverview?.address?.stateName || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Country">{{ complaintOverview?.address?.countryName || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Resi No">{{ complaintOverview?.address?.resiNo || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Office No">{{ complaintOverview?.address?.officeNo || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Office Ext">{{ complaintOverview?.address?.officeExt || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Fax No">{{ complaintOverview?.address?.faxNo || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Registration By">{{ complaintOverview?.address?.regBy || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Registration Date">{{ complaintOverview?.address?.regDate || '-' }}</nz-descriptions-item>
+                </nz-descriptions>
+                <ng-template #extraTpl1>
+                    {{Ca.nzActive ?'View Less':'View More'}}
+                </ng-template>
+                <ng-template #expandedIcon1 let-active>
+                    <nz-icon nzType="up" nzTheme="outline" [nzRotate]="Ca.nzActive ? 360 : 180"
+                        class="ant-collapse-arrow" />
+                </ng-template>
+            </nz-collapse-panel>
+        </nz-collapse>
+    </div>
+    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="12">
+        <nz-collapse [nzExpandIconPosition]="'end'" class="collapse-panel">
+            <nz-collapse-panel [nzExtra]="extraTpl2" #sod [nzHeader]="'Service Order Details'"
+                [nzExpandedIcon]="expandedIcon2" [nzActive]="true">
+                <nz-descriptions [nzLayout]="'vertical'" [nzColon]="false"
+                    [nzColumn]="{ xxl: 2, xl: 2, lg: 2, md: 2, sm: 1, xs: 1 }">
+                    <nz-descriptions-item nzTitle="Status">{{ complaintOverview?.service?.status || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Caller Name">{{ complaintOverview?.service?.callerName || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Call Type">{{ complaintOverview?.service?.callType || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Coverage Type">{{ complaintOverview?.service?.covType || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Complaint Description">{{ complaintOverview?.service?.compDesc || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Repair Type">{{ complaintOverview?.service?.repType || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Customer Request">{{ complaintOverview?.service?.custReq || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Received Mode">{{ complaintOverview?.service?.receMode || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Received From">{{ complaintOverview?.service?.status || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Received By">{{ complaintOverview?.service?.receBy || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Call Priority">{{ complaintOverview?.service?.priority || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Registered By">{{ complaintOverview?.service?.regBy || '-' }}</nz-descriptions-item>
+                    <nz-descriptions-item nzTitle="Registration Date">{{ complaintOverview?.service?.regDate || '-' }}</nz-descriptions-item>
+                </nz-descriptions>
+                <ng-template #extraTpl2>
+                    {{sod.nzActive ?'View Less':'View More'}}
+                </ng-template>
+                <ng-template #expandedIcon2 let-active>
+                    <nz-icon nzType="up" nzTheme="outline" [nzRotate]="sod.nzActive ? 360 : 180"
+                        class="ant-collapse-arrow" />
+                </ng-template>
+            </nz-collapse-panel>
+        </nz-collapse>
+        <nz-collapse [nzExpandIconPosition]="'end'" class="collapse-panel">
+            <nz-collapse-panel [nzExtra]="extraTpl3" #pd [nzHeader]="'Product Details'" [nzExpandedIcon]="expandedIcon3"
+                [nzActive]="true">
+                <nz-descriptions [nzLayout]="'vertical'" [nzColon]="false"
+                    [nzColumn]="{ xxl: 2, xl: 2, lg: 2, md: 2, sm: 1, xs: 1 }">
+                  <nz-descriptions-item nzTitle="Product">
+                {{ complaintOverview?.products?.prodCode || '-' }} - {{ complaintOverview?.products?.prodDesc || '-' }}
+                </nz-descriptions-item>
+                <nz-descriptions-item nzTitle="Product Group">{{ complaintOverview?.products?.prodSubGrp || '-' }}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="Product Line">{{ complaintOverview?.products?.prodLine || '-' }}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="Model">{{ complaintOverview?.products?.modelCode || '-' }}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="Machine Serial No">{{ complaintOverview?.products?.macSrNo || '-' }}</nz-descriptions-item>
+                <nz-descriptions-item nzTitle="Date Of Purchase">{{ complaintOverview?.products?.dop || '-' }}</nz-descriptions-item>
+                </nz-descriptions>
+                <ng-template #extraTpl3>
+                    {{pd.nzActive ?'View Less':'View More'}}
+                </ng-template>
+                <ng-template #expandedIcon3 let-active>
+                    <nz-icon nzType="up" nzTheme="outline" [nzRotate]="pd.nzActive ? 360 : 180"
+                        class="ant-collapse-arrow" />
+                </ng-template>
+            </nz-collapse-panel>
+        </nz-collapse>
+    </div>
+</div>

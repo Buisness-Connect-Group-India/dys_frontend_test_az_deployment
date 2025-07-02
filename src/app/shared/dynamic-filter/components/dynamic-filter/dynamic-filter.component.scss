@@ -1,0 +1,18 @@
+.requiredstar {
+    color: red;
+    margin-left: 4px;
+}
+
+.form-label {
+    margin-top: 20px;
+}
+
+.search-button {
+    text-align: right;
+}
+
+@media (max-width: 576px) {
+    .search-button {
+        text-align: right;
+    }
+}

@@ -1,0 +1,56 @@
+<ng-container *ngIf="operationType === OperationType.Create || operationType === OperationType.Edit">
+    <div class="drawer-body">
+        <form [formGroup]="areaForm" nz-form [nzLayout]="'vertical'">
+            <div nz-row [nzGutter]="24">
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="12">
+                    <nz-form-item>
+                        <nz-form-label nzFor="areaCode" appAsterisk>Area Code</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="areaCode" formControlName="areaCode" placeholder="Enter Area Code"
+                                [ngClass]="operationType === OperationType.Edit?'read-only':''"
+                                [readOnly]="operationType === OperationType.Edit" />
+                            <ng-container
+                                *ngIf="areaForm.controls['areaCode']?.invalid && (areaForm.controls['areaCode']?.dirty || areaForm.controls['areaCode']?.touched)">
+                                <div class="error-text">Area code is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="12">
+                    <nz-form-item>
+                        <nz-form-label nzFor="areaName" appAsterisk>Area Name</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="areaName" formControlName="areaName" placeholder="Enter Area Name" />
+                            <ng-container
+                                *ngIf="areaForm.controls['areaName']?.invalid && (areaForm.controls['areaName']?.dirty || areaForm.controls['areaName']?.touched)">
+                                <div class="error-text">Area name is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="12">
+                    <app-dynamic-dropdown [formGroup]="areaForm" controlName="countryCode" label="Country"
+                        dropdownType="country" sourceType="parent" valueKey="countryCode" labelKey="countryName"
+                        [required]="true"></app-dynamic-dropdown>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="12">
+                    <app-dynamic-dropdown [formGroup]="areaForm" controlName="stateCode" label="State"
+                        dropdownType="state" sourceType="child" valueKey="value" labelKey="text"
+                        [parentValue]="areaForm.get('countryCode')?.value" [required]="true"></app-dynamic-dropdown>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="12">
+                    <app-dynamic-dropdown [formGroup]="areaForm" controlName="cityCode" label="City" dropdownType="city"
+                        sourceType="child" valueKey="value" labelKey="text"
+                        [parentValue]="areaForm.get('stateCode')?.value" [required]="true"></app-dynamic-dropdown>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="medium-drawer-footer">
+        <button nz-button nzType="primary" class="cancel_btn" (click)="onCancel()">Cancel</button>
+        <button nz-button nzType="primary" class="reset_btn" (click)="onReset()">Reset</button>
+        <button nz-button nzType="primary" class="submit_btn" (click)="onSubmit()"
+            [disabled]="areaForm.invalid">{{operationType ===
+            OperationType.Edit ? 'Update': 'Submit'}}</button>
+    </div>
+</ng-container>

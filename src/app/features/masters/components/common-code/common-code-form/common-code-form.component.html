@@ -1,0 +1,87 @@
+<ng-container *ngIf="operationType === OperationType.Create || operationType === OperationType.Edit">
+  <div class="drawer-body">
+    <form [formGroup]="commonCodeForm" nz-form [nzLayout]="'vertical'">
+      <div nz-col nzSpan="23">
+        <div nz-row [nzGutter]="12">
+          <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8"
+            [nzOffset]="operationType === OperationType.Create ? 1:0">
+            <app-dynamic-dropdown [formGroup]="commonCodeForm" controlName="id" label="Common Code"
+              dropdownType="common_code" sourceType="individual" valueKey="value" labelKey="text"
+              [required]="true"></app-dynamic-dropdown>
+          </div>
+        </div>
+      </div>
+      <div formArrayName="dynamicFields" style="margin-top:10px">
+        <div *ngFor="let group of dynamicFields.controls; let i = index" [formGroupName]="i" class="dynamic-group">
+          <div nz-row [nzGutter]="12">
+            @if(operationType === OperationType.Create){
+            <div nz-col [nzXs]="2" [nzSm]="2" [nzMd]="1" [nzLg]="1" [nzXl]="1" class="checkbox-wrapper">
+              <label nz-checkbox formControlName="isSelected"></label>
+            </div>
+            }
+            <div nz-col [nzXs]="22" [nzSm]="22" [nzMd]="23" [nzLg]="23" [nzXl]="23">
+              <div nz-row [nzGutter]="12">
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="6" [nzLg]="6" [nzXl]="6">
+                  <nz-form-item>
+                    <nz-form-label appAsterisk>Code</nz-form-label>
+                    <nz-form-control>
+                      <input nz-input formControlName="code" placeholder="Enter Code"
+                        [ngClass]="operationType === OperationType.Edit?'read-only':''"
+                        [readOnly]="operationType === OperationType.Edit" />
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="10" [nzLg]="10" [nzXl]="10">
+                  <nz-form-item>
+                    <nz-form-label appAsterisk>Description</nz-form-label>
+                    <nz-form-control>
+                      <input nz-input name="" id="" formControlName="desc" placeholder="Enter Description" />
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="22" [nzMd]="6" [nzLg]="6" [nzXl]="6">
+                  <nz-form-item>
+                    <nz-form-label appAsterisk>Status</nz-form-label>
+                    <nz-form-control>
+                      Inactive <nz-switch id="status" name="status" class="nz-switch"
+                        formControlName="status"></nz-switch> Active
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                @if(operationType === OperationType.Create){
+                <div nz-col [nzXs]="24" [nzSm]="22" [nzMd]="2" [nzLg]="2" [nzXl]="2"
+                  style="display: flex; align-items: center;">
+                  <button nz-button nzType="default" nzDanger (click)="removeFieldGroup(i)">
+                    Delete
+                  </button>
+                </div>
+                }
+              </div>
+            </div>
+          </div>
+          @if(operationType === OperationType.Create){
+          <nz-divider *ngIf="i <= dynamicFields.length "
+            style="margin: 10px 0; border-top: 1.5px solid #bfbfbf;"></nz-divider>
+          }
+        </div>
+      </div>
+      <div nz-col nzOffset="1" style="margin-top: 16px; display: flex; gap: 12px;">
+        @if(operationType === OperationType.Create){
+        <button nz-button nzType="dashed" (click)="addFieldGroup()">+ Add New</button>
+        }
+        @if(hasSelected){
+        <button nz-button nzType="default" nzDanger (click)="removeSelectedGroups()">Remove
+          Selected</button>
+        }
+
+      </div>
+    </form>
+  </div>
+  <div class="drawer-footer">
+    <button nz-button nzType="primary" class="cancel_btn" style="margin-right: 8px;"
+      (click)="onCancel()">Cancel</button>
+    <button nz-button nzType="primary" class="reset_btn" (click)="onReset()">Reset</button>
+    <button nz-button nzType="primary" class="submit_btn" (click)="onSubmit()">{{operationType === OperationType.Edit ?
+      'Update': 'Submit'}}</button>
+  </div>
+</ng-container>

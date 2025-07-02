@@ -1,0 +1,84 @@
+.sticky-tab-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: white;
+    padding: 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+
+
+
+$mobile-breakpoint: 576px;
+$tablet-breakpoint: 992px;
+
+.complaint-header {
+    display: flex;
+    gap: 12px;
+    background-color: white;
+    // margin-top: 5px;
+    padding: 0;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+    flex-wrap: nowrap;
+
+    @media (max-width: $mobile-breakpoint) {
+        display: flex;
+        justify-content: space-between;
+        // padding: 0px 10px;
+    }
+}
+
+.sticky-tab-header {
+    position: sticky;
+    top: 0px;
+    z-index: 1000;
+    background-color: white;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.complaint-tabset {
+    flex: 1;
+}
+
+.complaint-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-top: 7px;
+}
+
+.complaint-id {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+
+    nz-icon {
+        margin-right: 10px;
+        font-size: 25px;
+        color: #1C7C9F;
+    }
+}
+
+.complaint-id-text {
+    font-size: 16px;
+    color: #1C7C9F;
+    font-weight: 500;
+}
+
+.ant-tabs-top,
+.ant-tabs-bottom[_ngcontent-ng-c1956967846] {
+    line-height: 16px !important;
+    margin-bottom: 0px;
+    font-weight: 500;
+}
+
+::ng-deep .ant-tabs-nav {
+    margin-bottom: 0 !important;
+}
+
+::ng-deep .ant-tabs-nav::before {
+    border-bottom: none !important;
+}

@@ -1,0 +1,69 @@
+<div nz-row class="custom-stepper" >
+    @for (step of steps; track step; let i = $index) {
+    <div nz-col  [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 24, offset: 0 }"
+                    [nzMd]="{ span: 24, offset: 2 }" [nzLg]="{ span: 24, offset: 2 }" [nzXl]="{ span: 24,offset: 2 }" [nzXXl]="{ span: 24, offset: 2 }" class="custom-step">
+        <div class="step-marker">
+            <div  [ngClass]="step.type=='Open'?'open-step-icon':'close-step-icon'" >
+                <nz-icon [nzType]="step.icon" nzTheme="outline"></nz-icon>
+            </div>
+            @if (i !== steps.length - 1) {
+            <div class="step-line"></div>
+            }
+        </div>
+
+        <div class="step-content">
+            <div class="step-title">
+                  <span [ngClass]="step.type=='Open'?'close-button':'open-button'"
+                                   >{{step.type}}</span>
+                {{ step.title }}
+                @if (step.date) {
+                <span class="step-date"> - {{ step.date | date: 'medium' }}</span>
+                }
+            </div>
+            <ng-container [ngSwitch]="step.type">
+                <!-- Delivered -->
+                <div *ngSwitchCase="'Open'">
+                    <nz-card class="activity-cards">
+                        <nz-descriptions [nzColumn]="{ xxl: 2, xl: 2, lg: 2, md: 2, sm: 1, xs: 1 }" [nzColon]="false" nzLayout="vertical">
+                            <nz-descriptions-item [nzTitle]="'Action Taken'"> 
+                               Consumable/Accessories Sale
+                            </nz-descriptions-item>
+                            <nz-descriptions-item [nzTitle]="'Service Provider'"> 
+                                -
+                            </nz-descriptions-item>
+                            <nz-descriptions-item [nzTitle]="'Product Description'"> 
+                                DELIVERED
+                            </nz-descriptions-item>
+                          <nz-descriptions-item [nzTitle]="'Complaint Description'"> 
+                                DELIVERED
+                            </nz-descriptions-item>
+                        </nz-descriptions>
+                    </nz-card>
+                </div>
+                <!-- Undelivered -->
+                <div *ngSwitchCase="'Close'">
+                    <nz-card class="activity-cards">
+                         <nz-descriptions [nzColumn]="{ xxl: 2, xl: 2, lg: 2, md: 2, sm: 1, xs: 1 }" [nzColon]="false" nzLayout="vertical">
+                            <nz-descriptions-item [nzTitle]="'Action Taken'"> 
+                              Pending Service Order
+                            </nz-descriptions-item>
+                            <nz-descriptions-item [nzTitle]="'Service Provider'"> 
+                                -
+                            </nz-descriptions-item>
+                            <nz-descriptions-item [nzTitle]="'Product Description'"> 
+                                DELIVERED
+                            </nz-descriptions-item>
+                          <nz-descriptions-item [nzTitle]="'Complaint Description'"> 
+                                DELIVERED
+                            </nz-descriptions-item>
+                            <nz-descriptions-item [nzTitle]="'Closure Date Time'">
+                                15.05.2024 18:11
+                            </nz-descriptions-item>
+                        </nz-descriptions>
+                    </nz-card>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+    }
+</div>

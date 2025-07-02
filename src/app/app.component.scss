@@ -1,0 +1,40 @@
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.inner-layout {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+nz-content {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #f5f5f5;
+}
+
+.inner-content {
+  flex: 1;
+  overflow: auto;
+  padding: 0px 10px 10px;
+  margin-top: 10px;
+  // background: #fff;
+}
+
+.mobile-sidebar {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  width: 556px !important;
+  height: calc(100% - 64px);
+  z-index: 999;
+  background-color: #fff;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+}
+

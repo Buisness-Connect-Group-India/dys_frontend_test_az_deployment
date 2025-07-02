@@ -1,0 +1,68 @@
+<div nz-row class="custom-stepper">
+    @for (step of steps; track step.type; let i = $index) {
+    <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]="24" [nzXl]="24" class="custom-step">
+
+        <!-- Step Marker with icon and line -->
+        <div class="step-marker">
+            <div class="step-icon">
+                <nz-icon [nzType]="step.icon" nzTheme="outline"></nz-icon>
+            </div>
+            @if (i !== steps.length - 1) {
+            <div class="step-line"></div>
+            }
+        </div>
+
+        <!-- Step Content -->
+        <div class="step-content">
+            <div class="step-title">
+                {{ step.title }}
+                @if (step.date) {
+                <span class="step-date"> - {{ step.date | date: 'medium' }}</span>
+                }
+            </div>
+
+            <ng-container [ngSwitch]="step.type">
+                <p *ngSwitchCase="'registered'">Complaint registered successfully by GANMIN.</p>
+
+                <div *ngSwitchCase="'schedule'">
+                    <nz-card class="activity-cards">
+                        <nz-descriptions [nzColon]="false"  [nzColumn]="{ xxl: 2, xl: 2, lg: 2, md: 2, sm: 1, xs: 1 }" [nzLayout]="'vertical'">
+                            <nz-descriptions-item [nzTitle]="'Action Taken'">Assigned</nz-descriptions-item>
+                            <nz-descriptions-item [nzTitle]="'Schedule Date / Time'">Assigned</nz-descriptions-item>
+                            <nz-descriptions-item [nzTitle]="'Service Provider Name'">Assigned</nz-descriptions-item>
+                            <nz-descriptions-item
+                                [nzTitle]="'Service Provider Code/ Category'">Assigned</nz-descriptions-item>
+                            <nz-descriptions-item [nzTitle]="'Route'">Assigned</nz-descriptions-item>
+                        </nz-descriptions>
+                    </nz-card>
+                </div>
+
+                <div *ngSwitchCase="'reschedule'">
+                    <p>This complaint is currently reschedule action from support.</p>
+                </div>
+
+                <div *ngSwitchCase="'visit'">
+                    <nz-card class="activity-cards">
+                        <nz-descriptions [nzColon]="false"  [nzColumn]="{ xxl: 2, xl: 2, lg: 2, md: 2, sm: 1, xs: 1 }" [nzLayout]="'vertical'">
+                            <nz-descriptions-item [nzTitle]="'Action Taken'">Assigned</nz-descriptions-item>
+                            <nz-descriptions-item [nzTitle]="'Visit Date / Time'">Assigned</nz-descriptions-item>
+                            <nz-descriptions-item [nzTitle]="'Condition'">Assigned</nz-descriptions-item>
+                            <nz-descriptions-item [nzTitle]="'Defect'">Assigned</nz-descriptions-item>
+                            <nz-descriptions-item [nzTitle]="'Milegage'">Assigned</nz-descriptions-item>
+                            <nz-descriptions-item [nzTitle]="'Visit Remark'">Assigned</nz-descriptions-item>
+                        </nz-descriptions>
+                    </nz-card>
+                </div>
+
+                <div *ngSwitchCase="'pending'">
+                    <p>This complaint is currently pending action from support.</p>
+                </div>
+
+                <div *ngSwitchCase="'close'">close action</div>
+
+                <p *ngSwitchDefault>No additional information.</p>
+            </ng-container>
+        </div>
+    </div>
+    }
+</div>

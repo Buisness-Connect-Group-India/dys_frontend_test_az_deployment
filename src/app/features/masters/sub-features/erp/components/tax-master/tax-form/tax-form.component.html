@@ -1,0 +1,91 @@
+<ng-container *ngIf="operationType === OperationType.Create || operationType === OperationType.Edit">
+    <div class="drawer-body">
+        <form [formGroup]="taxForm" nz-form [nzLayout]="'vertical'">
+            <div nz-col nzSpan="23">
+                <div nz-row [nzGutter]="12">
+                    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8" nzOffset="1">
+                        <app-dynamic-dropdown [formGroup]="taxForm" controlName="branchCode" label="Branch"
+                            dropdownType="branch" sourceType="individual" valueKey="value" labelKey="text"
+                            [required]="true"></app-dynamic-dropdown>
+                    </div>
+                </div>
+            </div>
+            <div formArrayName="dynamicFields" style="margin-top: 15px;">
+                <div *ngFor="let group of dynamicFields.controls; let i = index" [formGroupName]="i"
+                    class="dynamic-group">
+                    <div nz-row [nzGutter]="12">
+                        <div nz-col [nzXs]="2" [nzSm]="2" [nzMd]="1" [nzLg]="1" [nzXl]="1" class="checkbox-wrapper">
+                            <label nz-checkbox formControlName="isSelected"></label>
+                        </div>
+                        <div nz-col [nzXs]="22" [nzSm]="22" [nzMd]="23" [nzLg]="23" [nzXl]="23">
+                            <div nz-row [nzGutter]="12">
+                                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                                    <nz-form-item>
+                                        <nz-form-label>Tax Number</nz-form-label>
+                                        <nz-form-control>
+                                            <input nz-input formControlName="taxNo" placeholder="Tax Number" />
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                                    <nz-form-item>
+                                        <nz-form-label>Tax Label</nz-form-label>
+                                        <nz-form-control>
+                                            <input nz-input formControlName="taxLabel" placeholder="Tax Label" />
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                                    <nz-form-item>
+                                        <nz-form-label>Tax Percentage</nz-form-label>
+                                        <nz-form-control>
+                                            <input nz-input type="number" formControlName="taxPerc" placeholder="%" />
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                                    <nz-form-item>
+                                        <nz-form-label>From Date</nz-form-label>
+                                        <nz-form-control>
+                                            <nz-date-picker formControlName="fromDate" nzFormat="dd/MM/yyyy"
+                                                style="width: 100%"></nz-date-picker>
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                                    <nz-form-item>
+                                        <nz-form-label>To Date</nz-form-label>
+                                        <nz-form-control>
+                                            <nz-date-picker formControlName="toDate" nzFormat="dd/MM/yyyy"
+                                                style="width: 100%"></nz-date-picker>
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                                <div nz-col nzSpan="2" style="display: flex; align-items: center;">
+                                    <button *ngIf="dynamicFields.length > 1 || i !== 0" nz-button nzType="default"
+                                        nzDanger (click)="removeFieldGroup(i)">
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <nz-divider *ngIf="i < dynamicFields.length - 1"
+                        style="margin: 16px 0; border-top: 1.5px solid #bfbfbf;"></nz-divider>
+                </div>
+            </div>
+            <div nz-col nzOffset="1" style="margin-top: 16px; display: flex; gap: 12px;">
+                <button nz-button nzType="dashed" (click)="addFieldGroup()">+ Add New</button>
+                <button nz-button nzType="default" nzDanger (click)="removeSelectedGroups()">Remove Selected</button>
+            </div>
+        </form>
+    </div>
+    <div class="drawer-footer">
+        <button nz-button nzType="primary" class="cancel_btn" style="margin-right: 8px;"
+            (click)="onCancel()">Cancel</button>
+        <button nz-button nzType="primary" class="reset_btn" (click)="onReset()">Reset</button>
+        <button nz-button nzType="primary" class="submit_btn" (click)="onSubmit()"
+            [disabled]="taxForm.invalid">{{operationType ===
+            OperationType.Edit ? 'Update': 'Submit'}}</button>
+    </div>
+</ng-container>

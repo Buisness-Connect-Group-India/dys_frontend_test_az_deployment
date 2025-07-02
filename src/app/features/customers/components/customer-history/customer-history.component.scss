@@ -1,0 +1,225 @@
+$color-dark: #002d3c;
+
+// .custom-stepper {
+//     // margin-top: 5px;
+//     border-radius: 5px;
+//     display: flex;
+//     flex-direction: column;
+//     padding: 20px 60px;
+//     background-color: white;
+//     border: 1px solid #e0e0e0;
+//     position: relative;
+// }
+
+// .custom-step {
+//     display: flex;
+//     position: relative;
+//     padding-bottom: 40px;
+// }
+
+// .step-content {
+//     margin-left: 60px;
+//     flex: 1;
+// }
+
+// .step-title {
+//     font-size: 14px;
+//     font-weight: 500;
+//     margin-bottom:5px;
+// }
+
+// .activity-cards {
+//     // margin-top: 5px;
+//     margin-right: 8px;
+//     border-radius: 5px;
+//     border: 1px solid #d9d9d9;
+// }
+
+// .card-sutitle {
+//     color: $color-dark;
+//     font-size: 14px;
+//     font-weight: 500;
+//     padding: 0px !important;
+//     margin-bottom: 3px;
+
+//     button {
+//         margin-left: 10px;
+//     }
+// }
+
+// .step-marker {
+//     position: absolute;
+//     left: 0;
+//     top: 0;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     height: 100%;
+// }
+
+.open-step-icon {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #e6e6e6;
+    background-color: white;
+    color: rgb(255, 107, 67);
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    
+    @media (max-width: 576px) {
+        width: 16px;
+        height: 16px;
+        font-size: 4; // optional: hide text inside
+    }
+}
+.close-step-icon {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #e6e6e6;
+    background-color: white;
+    color: rgb(22 101 52);
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+
+    @media (max-width: 576px) {
+        width: 16px;
+        height: 16px;
+        font-size: 4; // optional: hide text inside
+    }
+}
+
+
+
+.step-line {
+    position: absolute;
+    top: 40px;
+    width: 2px;
+    height: calc(100% - 40px);
+    background-color: #d9d9d9;
+}
+
+.activity-cards ::ng-deep .custom-descriptions .ant-descriptions-item-label {
+    width: 140px;
+    display: inline-block;
+    text-align: left;
+    padding-right: 8px;
+}
+
+.discription-item-text {
+    padding-left: 10px;
+}
+
+.discription-item-text span.collapsed {
+    display: -webkit-box;
+
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    max-height: 1.5em;
+    /* Adjust based on line-height */
+}
+
+.read-more-toggle {
+    color: #1890ff;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.close-button {
+    background-color: rgb(254 215 170);
+    color: rgb(154 52 18);
+    padding: 2px 10px;
+    border-radius: 3px;
+}
+
+.open-button {
+    background-color: rgb(187 247 208);
+    color: rgb(22 101 52);
+    padding: 2px 10px;
+    border-radius: 3px;
+}
+
+
+.custom-stepper {
+    margin-top: 5px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 60px;
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    position: relative;
+
+    @media (max-width: 576px) {
+        padding: 10px;
+    }
+}
+
+.custom-step {
+    display: flex;
+    position: relative;
+    padding-bottom: 40px;
+
+    @media (max-width: 576px) {
+        padding-bottom: 25px;
+    }
+}
+
+.step-content {
+    margin-left: 60px;
+    flex: 1;
+
+    @media (max-width: 576px) {
+        margin-left: 25px;
+    }
+}
+
+.step-title {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.activity-cards {
+    margin-top: 5px;
+    margin-right: 8px;
+    border-radius: 5px;
+    border: 1px solid #d9d9d9;
+
+    @media (max-width: 576px) {
+        margin-right: 0px;
+    }
+}
+
+.step-marker {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.step-line {
+    position: absolute;
+    top: 40px;
+    width: 2px;
+    height: calc(100% - 40px);
+    background-color: #d9d9d9;
+
+    @media (max-width: 576px) {
+        top: 16px;
+        height: calc(100% - 20px);
+    }
+}

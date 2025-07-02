@@ -1,0 +1,119 @@
+<div nz-row class="custom-stepper">
+    @for (step of steps; track step; let i = $index) {
+    <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]="24" [nzXl]="24"  class="custom-step">
+        <div class="step-marker">
+            <div class="step-icon">
+                <nz-icon [nzType]="step.icon" nzTheme="outline"></nz-icon>
+            </div>
+            @if (i !== steps.length - 1) {
+            <div class="step-line"></div>
+            }
+        </div>
+
+        <div class="step-content">
+            <div class="step-title">
+                {{ step.title }}
+                @if (step.date) {
+                <span class="step-date"> - {{ step.date | date: 'medium' }}</span>
+                }
+            </div>
+            <ng-container [ngSwitch]="step.type">
+                <!-- Delivered -->
+                <div *ngSwitchCase="'Delivered'">
+                    <nz-card class="activity-cards">
+                        <div nz-col nzSpan="24" class="card-sutitle">
+                            <div nz-row nzJustify="space-between">
+                                <div nz-col [nzXs]="18" [nzSm]="18" [nzMd]="21" [nzLg]="21" [nzXl]="21">
+                                    Service Order Closure
+                                </div>
+                                <div nz-col [nzXs]="6" [nzSm]="6" [nzMd]="3" [nzLg]="3" [nzXl]="3">
+                                    <button nz-button nzSize="small" class="success-button"
+                                        nzType="default">Delivered</button>
+                                </div>
+                            </div>
+                            <div>9122333444 | 8444 / 21.12.2024</div>
+                        </div>
+                        <nz-descriptions [nzColumn]="1" [nzColon]="false" nzLayout="horizontal"
+                            class="custom-descriptions">
+                            <nz-descriptions-item [nzTitle]="'Mobile No'"> :
+                                <span class="discription-item-text">+919920290092</span>
+                            </nz-descriptions-item>
+                            <nz-descriptions-item [nzTitle]="'Delivery Time'"> :
+                                <span class="discription-item-text">-</span>
+                            </nz-descriptions-item>
+                            <nz-descriptions-item [nzTitle]="'Remarks'"> :
+                                <span class="discription-item-text">DELIVERED</span>
+                            </nz-descriptions-item>
+                            <nz-descriptions-item [nzTitle]="'Content'"> :
+                                <div nzSpan="24" class="discription-item-text">
+                                    <span #contentRef [class.collapsed]="!step.isExpanded">
+                                        Dear customer, we are delighted to inform you that your request No ABC1234567890
+                                        has been received and is under process. Thank you for choosing our service. Dear
+                                        customer, we are delighted to inform you that your request No ABC1234567890 has
+                                        been received and is under process. Thank you for choosing our service.
+                                    </span>
+                                    <div nz-col>
+                                        <a *ngIf="step.isOverflowing" (click)="toggleReadMore(i)"
+                                            class="read-more-toggle">
+                                            <nz-icon nzType="{{ step.isExpanded ?'up':'down'}}" nzTheme="outline" />
+                                            {{ step.isExpanded ? 'Read less' : 'Read more' }}
+                                        </a>
+                                    </div>
+                                </div>
+                            </nz-descriptions-item>
+                        </nz-descriptions>
+
+                    </nz-card>
+                </div>
+                <!-- Undelivered -->
+                <div *ngSwitchCase="'Undelivered'">
+                    <nz-card class="activity-cards">
+                        <div class="card-sutitle">
+                            <div nz-row nzJustify="space-between">
+                                <div nz-col [nzXs]="17" [nzSm]="18" [nzMd]="21" [nzLg]="21" [nzXl]="21">
+                                    Service Order Closure
+                                </div>
+                                <div nz-col [nzXs]="7" [nzSm]="6" [nzMd]="3" [nzLg]="3" [nzXl]="3">
+                                    <button nz-button nzSize="small" class="danger-button"
+                                        nzType="default">Undelivered</button>
+                                </div>
+                            </div>
+                            <div>9122333444 | 8444 / 21.12.2024</div>
+                        </div>
+                        <nz-descriptions [nzColumn]="1" [nzColon]="false" nzLayout="horizontal"
+                            class="custom-descriptions">
+                            <nz-descriptions-item [nzTitle]="'Mobile No'"> :
+                                <span class="discription-item-text">+919920290092</span>
+                            </nz-descriptions-item>
+                            <nz-descriptions-item [nzTitle]="'Delivery Time'"> :
+                                <span class="discription-item-text">-</span>
+                            </nz-descriptions-item>
+                            <nz-descriptions-item [nzTitle]="'Remarks'"> :
+                                <span class="discription-item-text">UNDELIVERED</span>
+                            </nz-descriptions-item>
+                            <nz-descriptions-item [nzTitle]="'Content'"> :
+                                <div class="discription-item-text">
+                                    <span nz-col nzSpan="24" #contentRef [class.collapsed]="!step.isExpanded">
+                                        Dear customer, we are delighted to inform you that your request No ABC1234567890
+                                        has been received and is under process. Thank you for choosing our service. Dear
+                                        customer, we are delighted to inform you that your request No ABC1234567890 has
+                                        been received and is under process. Thank you for choosing our service.
+                                    </span>
+                                    <div nz-col>
+                                        <a *ngIf="step.isOverflowing" (click)="toggleReadMore(i)"
+                                            class="read-more-toggle">
+                                            <nz-icon nzType="{{ step.isExpanded ?'up':'down'}}" nzTheme="outline" />
+                                            {{ step.isExpanded ? 'Read less' : 'Read more' }}
+                                        </a>
+                                    </div>
+                                </div>
+                            </nz-descriptions-item>
+
+                        </nz-descriptions>
+                    </nz-card>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+    }
+</div>

@@ -1,0 +1,46 @@
+.section-box {
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 24px;
+    position: relative;
+}
+
+.section-header {
+    position: relative;
+    padding-left: 16px;
+    font-weight: 600;
+    font-size: 16px;
+    margin: 0 0 16px 0;
+
+    &::before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 3px;
+        top: 0;
+        left: -17px;
+        background-color: #002d3c;
+    }
+}
+
+.add-btn {
+    background-color: #e6f4ff;
+    color: #1677ff;
+    border: 1px solid #91caff;
+}
+
+.copy-btn {
+    float: right;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 450;
+}
+@media screen and (max-width: 576px) {
+  .copy-btn {
+   padding: 0;
+    font-size: 16px;
+    font-weight: 450;
+    float:none;
+  }
+}

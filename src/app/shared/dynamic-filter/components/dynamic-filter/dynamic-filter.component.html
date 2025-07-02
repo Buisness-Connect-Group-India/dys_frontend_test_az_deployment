@@ -1,0 +1,63 @@
+<div nz-row>
+    <div nz-col nzSpan="24">
+        <nz-collapse [nzExpandIconPosition]="'end'" class="filter-collapse">
+            <nz-collapse-panel [nzHeader]="'Filter'" [nzActive]="true">
+                <form [formGroup]="filterForm" (ngSubmit)="onSubmit()" nz-form [nzLayout]="'vertical'">
+                    <div nz-row [nzGutter]="8">
+                        <ng-container *ngFor="let field of fields">
+                            <ng-container [ngSwitch]="field.type">
+                                <!-- Select -->
+                                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="8" *ngSwitchCase="'select'">
+                                    <nz-form-item>
+                                        <nz-form-control [nzErrorTip]="'This field is required'">
+                                            <nz-form-label [nzNoColon]="true">
+                                            {{ field.label }} <span *ngIf="field.required" class="requiredstar">*</span>
+                                        </nz-form-label>
+                                            <nz-select nzPlaceHolder="Select" [formControlName]="field.formControlName">
+                                                <nz-option *ngFor="let opt of field.options" [nzLabel]="opt"
+                                                    [nzValue]="opt"></nz-option>
+                                            </nz-select>
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+
+                                <!-- Text -->
+                                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="8" *ngSwitchCase="'text'">
+                                    <nz-form-item>
+                                        <nz-form-label [nzNoColon]="true">
+                                            {{ field.label }} <span *ngIf="field.required" class="requiredstar">*</span>
+                                        </nz-form-label>
+                                        <nz-form-control [nzErrorTip]="'This field is required'">
+                                            <input nz-input [formControlName]="field.formControlName" />
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+
+                                <!-- Date -->
+                                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="8" *ngSwitchCase="'date'">
+                                    <nz-form-item>
+                                        <nz-form-control [nzErrorTip]="'This field is required'">
+                                             <nz-form-label [nzNoColon]="true">
+                                            {{ field.label }} <span *ngIf="field.required" class="requiredstar">*</span>
+                                        </nz-form-label>
+                                            <nz-date-picker style="width: 100%;"
+                                                [formControlName]="field.formControlName"></nz-date-picker>
+                                        </nz-form-control>
+                                    </nz-form-item>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+
+                    <div nz-row [nzJustify]="'end'">
+                        <div nz-col class="search-button">
+                            <button type="button" nz-button (click)="onReset()" style="margin-left: 8px" nzType="primary" class="cancel_btn">Clear</button>
+                            <button type="submit" nz-button nzType="primary">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </nz-collapse-panel>
+        </nz-collapse>
+
+    </div>
+</div>

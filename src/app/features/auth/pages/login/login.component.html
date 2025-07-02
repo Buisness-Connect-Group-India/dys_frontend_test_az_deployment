@@ -1,0 +1,79 @@
+@if(!isLoggedUser){
+<div class="login-container">
+    <div class="login-form-container">
+        <form [formGroup]="loginForm" nz-form [nzLayout]="'vertical'" (ngSubmit)="onSubmit()">
+            <div nz-row nzJustify="center" class="logo-row">
+                <div nz-col [nzSpan]="24">
+                    <img src="/images/login-atos-logo.png" alt="Eviden Logo" class="logo-img" />
+                </div>
+            </div>
+            <div nz-row nzJustify="center" class="title-row">
+                <div nz-col [nzSpan]="24">
+                    <h2>Welcome To Service Connect</h2>
+                </div>
+            </div>
+            <div nz-row nzJustify="center" class="form-content">
+                <div nz-col [nzSpan]="22">
+                    <nz-form-item>
+                        <nz-form-control>
+                            <nz-select formControlName="country" nzShowSearch nzPlaceHolder="Select your country"
+                                [nzCustomTemplate]="defaultTemplate">
+                                <ng-container *ngFor="let country of countries">
+                                    <nz-option nzCustomContent [nzLabel]="country.name" [nzValue]="country.code">
+                                        <img [src]="'https://flagcdn.com/24x18/' + country.code.toLowerCase() + '.png'"
+                                            class="flag-icon" />
+                                        {{ country.name }}
+                                    </nz-option>
+                                </ng-container>
+                            </nz-select>
+                            <ng-template #defaultTemplate let-selected>
+                                <img *ngIf="selected"
+                                    [src]="'https://flagcdn.com/24x18/' + selected.nzValue.toLowerCase() + '.png'"
+                                    class="flag-icon" />
+                                {{ selected?.nzLabel }}
+                            </ng-template>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-control>
+                            <nz-select formControlName="language" nzShowSearch
+                                nzPlaceHolder="Select preferred language">
+                                <nz-option nzLabel="English" nzValue="English"></nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-control nzErrorTip="Please input your username!">
+                            <input formControlName="username" type="text" nz-input placeholder="Username" />
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-control nzErrorTip="Please input your password!">
+                            <nz-input-group [nzSuffix]="suffixIcon">
+                                <input formControlName="password" [type]="passwordVisible ? 'text' : 'password'"
+                                    nz-input placeholder="Password" />
+                            </nz-input-group>
+                            <ng-template #suffixIcon>
+                                <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+                                    (click)="togglePasswordVisibility()" class="toggle-icon"></i>
+                            </ng-template>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <div nz-row>
+                        <div nz-col [nzSpan]="24">Forgot Password?</div>
+                        <div nz-col [nzSpan]="24">
+                            <button type="submit" nz-button nzBlock class="login-btn" [nzSize]="'large'"
+                                [disabled]="loginForm.invalid" [nzTooltipTrigger]="loginForm.invalid ? 'hover' : null"
+                                nz-tooltip nzTooltipTitle="Please fill in all mandatory fields."
+                                [nzTooltipPlacement]="['bottom','bottomLeft', 'bottomRight']" nzTooltipColor="#002d3c">
+                                Login
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+}

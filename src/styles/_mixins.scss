@@ -1,0 +1,35 @@
+@use 'variables';
+
+@mixin button-style($color) {
+  background-color: $color !important;
+  border: none;
+  margin-right: 8px;
+}
+
+@mixin icon-style($color, $size) {
+  color: $color;
+  margin: 0px 16px;
+  cursor: pointer;
+  font-size: $size;
+}
+
+@mixin flex-between($gap: 12px) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: $gap;
+}
+
+@mixin drawer-footer($width) {
+  position: absolute; 
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  max-width: 100%;
+  padding: 10px 10px;
+  background: #fff;
+  border-top: 1px solid #e8e8e8;
+  text-align: right;
+  flex-shrink: 0;
+}

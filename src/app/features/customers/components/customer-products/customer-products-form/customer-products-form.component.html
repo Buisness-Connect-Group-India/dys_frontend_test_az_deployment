@@ -1,0 +1,105 @@
+<ng-container *ngIf="type === 'Edit' || type === 'Create'">
+  <div class="drawer-body">
+    <form [formGroup]="productsForm" nz-form [nzLayout]="'vertical'">
+      <div nz-row [nzGutter]="12">
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="8" [nzLg]="8" [nzXl]="8">
+          <nz-form-item>
+            <nz-form-label nzFor="prodTypeCode" appAsterisk>Product Type</nz-form-label>
+            <nz-form-control>
+              <nz-select id="prodTypeCode" formControlName="prodTypeCode" nzPlaceHolder="Select product type">
+                <!-- <nz-option *ngFor="let type of productTypes" [nzLabel]="type.label" [nzValue]="type.value"></nz-option> -->
+              </nz-select>
+              <div class="error-text" *ngIf="productsForm.controls['prodTypeCode']?.errors?.['required'] && productsForm.controls['prodTypeCode'].touched">
+                Product type is required.
+              </div>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="8" [nzLg]="8" [nzXl]="8">
+          <nz-form-item>
+            <nz-form-label nzFor="prodGrpCode" appAsterisk>Product Group Code</nz-form-label>
+            <nz-form-control>
+              <nz-select id="prodGrpCode" formControlName="prodGrpCode" nzPlaceHolder="Select product group">
+                <!-- <nz-option *ngFor="let group of productGroups" [nzLabel]="group.label" [nzValue]="group.value"></nz-option> -->
+              </nz-select>
+              <div class="error-text" *ngIf="productsForm.controls['prodGrpCode']?.errors?.['required'] && productsForm.controls['prodGrpCode'].touched">
+                Product group code is required.
+              </div>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="8" [nzLg]="8" [nzXl]="8">
+          <nz-form-item>
+            <nz-form-label nzFor="prodCode" appAsterisk>Product</nz-form-label>
+            <nz-form-control>
+              <nz-select id="prodCode" formControlName="prodCode" nzPlaceHolder="Select product">
+                <!-- options here -->
+              </nz-select>
+              <div class="error-text" *ngIf="productsForm.controls['prodCode']?.errors?.['required'] && productsForm.controls['prodCode'].touched">
+                Product is required.
+              </div>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="8" [nzLg]="8" [nzXl]="8">
+          <nz-form-item>
+            <nz-form-label nzFor="alienModel">Alien Model</nz-form-label>
+            <nz-form-control>
+              <input nz-input id="alienModel" formControlName="alienModel" placeholder="Enter model code" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="8" [nzLg]="8" [nzXl]="8">
+          <nz-form-item>
+            <nz-form-label nzFor="brandCode">Brand</nz-form-label>
+            <nz-form-control>
+               <nz-select id="brandCode" formControlName="brandCode" nzPlaceHolder="Select Brand">
+                <!-- options here -->
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="8" [nzLg]="8" [nzXl]="8">
+          <nz-form-item>
+            <nz-form-label nzFor="macSrNo">Machine Serial No.</nz-form-label>
+            <nz-form-control>
+              <input nz-input id="macSrNo" formControlName="macSrNo" placeholder="Enter serial number" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+    
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="8" [nzLg]="8" [nzXl]="8">
+          <nz-form-item>
+            <nz-form-label nzFor="modelDesc">Model Description</nz-form-label>
+            <nz-form-control>
+              <input nz-input id="modelDesc" formControlName="modelDesc" placeholder="Enter model description" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="8" [nzLg]="8" [nzXl]="8">
+          <nz-form-item>
+            <nz-form-label nzFor="purcDate" appAsterisk>Purchase Date</nz-form-label>
+            <nz-form-control>
+              <nz-date-picker id="purcDate" formControlName="purcDate" class="date-picker"></nz-date-picker>
+              <div class="error-text" *ngIf="productsForm.controls['purcDate']?.errors?.['required'] && productsForm.controls['purcDate'].touched">
+                Purchase date is required.
+              </div>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="drawer-footer">
+    <button nz-button nzType="primary" class="cancel_btn" (click)="onCancel()">Cancel</button>
+    <button nz-button nzType="primary" class="reset_btn" (click)="onReset()">Reset</button>
+    <button nz-button nzType="primary" class="submit_btn" (click)="onSubmit()">Submit</button>
+  </div>
+</ng-container>

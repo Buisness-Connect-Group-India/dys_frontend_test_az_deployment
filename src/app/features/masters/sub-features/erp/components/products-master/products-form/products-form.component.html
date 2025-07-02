@@ -1,0 +1,89 @@
+<ng-container *ngIf="operationType === OperationType.Create || operationType === OperationType.Edit">
+    <div class="drawer-body">
+        <form [formGroup]="productsForm" nz-form [nzLayout]="'vertical'">
+            <div nz-row [nzGutter]="12">
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label nzFor="prodCode" appAsterisk>Product Code</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input type="text" id="prodCode" name="prodCode" formControlName="prodCode"
+                                [ngClass]="operationType === OperationType.Edit?'read-only':''"
+                                [readOnly]="operationType === OperationType.Edit" placeholder="Enter product code" />
+                            <ng-container
+                                *ngIf="productsForm.controls['prodCode']?.invalid && productsForm.controls['prodCode']?.touched">
+                                <div class="error-text" *ngIf="productsForm.controls['prodCode']?.errors?.['required']">
+                                    Product code is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label nzFor="prodDesc" appAsterisk>Product Description</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="prodDesc" name="prodDesc" formControlName="prodDesc"
+                                placeholder="Enter product description" />
+                            <ng-container
+                                *ngIf="productsForm.controls['prodDesc']?.invalid && productsForm.controls['prodDesc']?.touched">
+                                <div class="error-text" *ngIf="productsForm.controls['prodDesc']?.errors?.['required']">
+                                    Product description is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label nzFor="modelCode" appAsterisk>Model Code</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input type="text" id="modelCode" name="modelCode" formControlName="modelCode"
+                                placeholder="Enter model code" />
+                            <ng-container
+                                *ngIf="productsForm.controls['modelCode']?.invalid && productsForm.controls['modelCode']?.touched">
+                                <div class="error-text"
+                                    *ngIf="productsForm.controls['modelCode']?.errors?.['required']"> Model code is
+                                    required. </div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <app-dynamic-dropdown [formGroup]="productsForm" controlName="prodTypeCode" label="Product Type"
+                        dropdownType="prod_type" sourceType="individual" valueKey="value" labelKey="text"
+                        [required]="true"></app-dynamic-dropdown>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <app-dynamic-dropdown [formGroup]="productsForm" controlName="prodGrpCode" label="Product Group"
+                        dropdownType="prod_grp" sourceType="individual" valueKey="value" labelKey="text"
+                        [required]="true"></app-dynamic-dropdown>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <app-dynamic-dropdown [formGroup]="productsForm" controlName="brandCode" label="Brand"
+                        dropdownType="brand" sourceType="individual" valueKey="value" labelKey="text"
+                        [required]="true"></app-dynamic-dropdown>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <app-dynamic-dropdown [formGroup]="productsForm" controlName="itemCat" label="Item Category"
+                        dropdownType="item_category" sourceType="individual" valueKey="value" labelKey="text"
+                        [required]="true"></app-dynamic-dropdown>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Status</nz-form-label>
+                        <nz-form-control>
+                            <label>Inactive</label>
+                            <nz-switch id="status" formControlName="status" class="nz-switch"></nz-switch>
+                            <label>Active</label>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="drawer-footer">
+        <button nz-button nzType="primary" class="cancel_btn" (click)="onCancel()">Cancel</button>
+        <button nz-button nzType="primary" class="reset_btn" (click)="onReset()">Reset</button>
+        <button nz-button nzType="primary" class="submit_btn" [disabled]="productsForm.invalid"
+            (click)="onSubmit()">{{operationType ===
+            OperationType.Edit ? 'Update': 'Submit'}}</button>
+    </div>
+</ng-container>

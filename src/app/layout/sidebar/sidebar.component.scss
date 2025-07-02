@@ -1,0 +1,18 @@
+:host {
+  display: contents;
+}
+
+nz-sider.menu-sidebar {
+  position: relative;
+  z-index: 10;
+  min-height: 100%;
+  background-color: white;
+  overflow: auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+.ant-menu-item-selected {
+  background-color: #E2E8F0 !important;
+  font-weight: 600;
+}
+

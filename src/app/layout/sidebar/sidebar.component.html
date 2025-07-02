@@ -1,0 +1,503 @@
+<nz-sider [nzCollapsed]="isCollapsed" [nzTrigger]="null" nzWidth="256px" [ngClass]=" isMobile?'mobile-sidebar' :'menu-sidebar'">
+  <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+    <li nz-menu-item routerLink="/dashboard" routerLinkActive="ant-menu-item-selected">
+      <nz-icon nzType="dashboard" />
+      <span>DASHBOARD</span>
+    </li>
+    <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+      <nz-icon nzType="star" />
+      <span>FAVOURITE</span>
+    </li>
+    <li nz-menu-item routerLink="/customers" routerLinkActive="ant-menu-item-selected" >
+            <nz-icon nzType="team" />
+      <span>CUSTOMER'S</span>
+    </li>
+    <li nz-submenu nzTitle="SERVICE ORDER" nzIcon="code-sandbox">
+      <ul>
+        <ul>
+          <li nz-submenu nzTitle="Scheduling" nzIcon="schedule">
+            <ul>
+              <li nz-menu-item routerLink="/schedule" routerLinkActive="ant-menu-item-selected">
+                <nz-icon nzType="star" />
+                View Schedule
+              </li>
+              <li nz-menu-item routerLink="/supplier">
+                <nz-icon nzType="star" />
+                Summary Report
+              </li>
+              <li nz-menu-item routerLink="/product">
+                <nz-icon nzType="star" />
+                Reschedule
+              </li>
+            </ul>
+          </li>
+          <li nz-submenu nzTitle="Workshop Repair" nzIcon="tool">
+            <ul>
+              <li nz-menu-item routerLink="/customer">
+                <nz-icon nzType="star" />
+                Collection Memo Printing
+              </li>
+              <li nz-menu-item routerLink="/supplier">
+                <nz-icon nzType="star" />
+                Dispatch Memo Printing
+              </li>
+              <li nz-menu-item routerLink="/product">
+                <nz-icon nzType="star" />
+                Dispatch Memo Generartion
+              </li>
+              <li nz-menu-item routerLink="/product">
+                <nz-icon nzType="star" />
+                Uncollected Appliances
+              </li>
+              <li nz-menu-item routerLink="/product">
+                <nz-icon nzType="star" />
+                Quotation Pending For Approval
+              </li>
+              <li nz-menu-item routerLink="/product">
+                <nz-icon nzType="star" />
+                Quotation Approved
+              </li>
+
+            </ul>
+          </li>
+          <li nz-submenu nzTitle="Cash Memo" nzIcon="container">
+            <ul>
+              <li nz-menu-item routerLink="/customer">
+                <nz-icon nzType="star" />
+                Create Cash Memo
+              </li>
+              <li nz-menu-item routerLink="/supplier">
+                <nz-icon nzType="star" />
+                View/Update Cash Memo
+              </li>
+              <li nz-menu-item routerLink="/product">
+                <nz-icon nzType="star" />
+                Cash Memo Approval
+              </li>
+              <li nz-menu-item routerLink="/product">
+                <nz-icon nzType="star" />
+                Payment Collection Summary
+              </li>
+            </ul>
+          </li>
+          <li nz-submenu nzTitle="Batch Upload" nzIcon="cloud-upload">
+            <ul>
+              <li nz-menu-item nzMatchRouter>
+                <nz-icon nzType="star" />
+                Service - Batch Upload
+              </li>
+              <li nz-menu-item nzMatchRouter>
+                <nz-icon nzType="star" />
+                Batch Upload -Audit Log
+              </li>
+              <li nz-menu-item nzMatchRouter>
+                <nz-icon nzType="star" />
+                Batch Upload - Approval
+              </li>
+            </ul>
+          </li>
+          <li nz-submenu nzTitle="Product Replacement" nzIcon="pull-request">
+            <ul>
+              <li nz-menu-item nzMatchRouter>
+                <nz-icon nzType="star" />
+                Product Replacement Management
+              </li>
+              <li nz-menu-item nzMatchRouter>
+                <nz-icon nzType="star" />
+                Product Replacement Approval
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </ul>
+    </li>
+    <li nz-submenu nzTitle="CLAIMS" nzIcon="file-protect">
+      <ul>
+        <li nz-menu-item nzMatchRouter>
+          <nz-icon nzType="star" />
+          Claim By Status
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <nz-icon nzType="star" />
+          Claim Approval
+        </li>
+      </ul>
+    </li>
+    <li nz-submenu nzTitle="MASTERS" nzIcon="appstore">
+      <ul>
+        <li nz-submenu nzTitle="ERP" nzIcon="slack">
+          <ul>
+            <li nz-menu-item routerLink="/masters/erp/country" routerLinkActive="ant-menu-item-selected">
+              <nz-icon nzType="star" />
+              Country
+            </li>
+            <li nz-menu-item routerLink="/masters/erp/state" routerLinkActive="ant-menu-item-selected">
+              <nz-icon nzType="star" />
+              State
+            </li>
+            <li nz-menu-item routerLink="/masters/erp/city" routerLinkActive="ant-menu-item-selected">
+              <nz-icon nzType="star" />
+              City
+            </li>
+            <li nz-menu-item routerLink="/masters/erp/area" routerLinkActive="ant-menu-item-selected">
+              <nz-icon nzType="star" />
+              Area
+            </li>
+            <li nz-menu-item routerLink="/masters/erp/branch" routerLinkActive="ant-menu-item-selected">
+              <nz-icon nzType="star" />
+              Branch
+            </li>
+            <li nz-menu-item routerLink="/masters/erp/branch-group" routerLinkActive="ant-menu-item-selected">
+              <nz-icon nzType="star" />
+              Branch Group
+            </li>
+            <li nz-menu-item routerLink="/masters/erp/technician" routerLinkActive="ant-menu-item-selected">
+              <nz-icon nzType="star" />
+              Technician ASC
+            </li>
+            <li nz-menu-item routerLink="/masters/erp/engineer" routerLinkActive="ant-menu-item-selected">
+              <nz-icon nzType="star" />
+              Engineer
+            </li>
+            <li nz-menu-item routerLink="/masters/erp/product-line" routerLinkActive="ant-menu-item-selected">
+              <nz-icon nzType="star" />
+              Product Type
+            </li>
+            <li nz-menu-item routerLink="/masters/erp/product-group" routerLinkActive="ant-menu-item-selected">
+              <nz-icon nzType="star" />
+              Product Group
+            </li>
+            <li nz-menu-item routerLink="/masters/erp/products" routerLinkActive="ant-menu-item-selected">
+              <nz-icon nzType="star" />
+              Product's
+            </li>
+            <li nz-menu-item routerLink="/masters/erp/spare-item" routerLinkActive="ant-menu-item-selected">
+              <nz-icon nzType="star" />
+              Spare Item
+            </li>
+            <li nz-menu-item routerLink="/masters/erp/brand" routerLinkActive="ant-menu-item-selected">
+              <nz-icon nzType="star" />
+              Brand
+            </li>
+            <li nz-menu-item routerLink="/masters/erp/retailer" routerLinkActive="ant-menu-item-selected">
+              <nz-icon nzType="star" />
+              Retailer
+            </li>
+            <li nz-menu-item routerLink="/masters/erp/tax-master" routerLinkActive="ant-menu-item-selected">
+              <nz-icon nzType="star" />
+              Tax Master
+            </li>
+            <li nz-menu-item routerLink="/masters/erp/contact-center" routerLinkActive="ant-menu-item-selected">
+              <nz-icon nzType="star" />
+              Contact Center
+            </li>
+            <li nz-menu-item routerLink="/masters/erp/master-upload" routerLinkActive="ant-menu-item-selected">
+              <nz-icon nzType="star" />
+              Master Upload
+            </li>
+          </ul>
+        </li>
+        <li nz-submenu nzTitle="Tech Scheduling" nzIcon="global">
+          <ul>
+            <li nz-menu-item routerLink="/customer">
+              <nz-icon nzType="star" />
+              Tech Product Relation
+            </li>
+            <li nz-menu-item routerLink="/supplier">
+              <nz-icon nzType="star" />
+              Tech Location Relation
+            </li>
+            <li nz-menu-item routerLink="/product">
+              <nz-icon nzType="star" />
+              Tech Skill Master
+            </li>
+            <li nz-menu-item routerLink="/product">
+              <nz-icon nzType="schedule" />
+              Tech Availability
+            </li>
+            <li nz-menu-item routerLink="/product">
+              <nz-icon nzType="star" />
+              Tech Unavailability
+            </li>
+            <li nz-menu-item routerLink="/product">
+              <nz-icon nzType="star" />
+              Holiday
+            </li>
+          </ul>
+        </li>
+        <li nz-submenu nzTitle="Service Order" nzIcon="file-protect">
+          <ul>
+            <li nz-menu-item routerLink="/customer">
+              <nz-icon nzType="star" />
+              Action Master
+            </li>
+            <li nz-menu-item routerLink="/supplier">
+              <nz-icon nzType="star" />
+              Coverage Type Validation
+            </li>
+            <li nz-menu-item routerLink="/product">
+              <nz-icon nzType="star" />
+              Repeat Service Checks
+            </li>
+            <li nz-menu-item routerLink="/product">
+              <nz-icon nzType="star" />
+              Condition
+            </li>
+            <li nz-menu-item routerLink="/product">
+              <nz-icon nzType="star" />
+              Product Coverage Master
+            </li>
+          </ul>
+        </li>
+        <li nz-menu-item nzMatchRouter routerLink="/masters/common-master">
+          <nz-icon nzType="pic-center" nzTheme="outline" />
+          Common Masters
+        </li>
+        <li nz-submenu nzTitle="Claim Rates" nzIcon="container">
+          <ul>
+            <li nz-menu-item routerLink="/customer">
+              <nz-icon nzType="star" />
+              Gas Charging
+            </li>
+            <li nz-menu-item routerLink="/supplier">
+              <nz-icon nzType="star" />
+              Labour Rate
+            </li>
+            <li nz-menu-item routerLink="/product">
+              <nz-icon nzType="star" />
+              Transportaion
+            </li>
+            <li nz-menu-item routerLink="/product">
+              <nz-icon nzType="star" />
+              Claim Generartion Master
+            <li>
+          </ul>
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <nz-icon nzType="file-done" />
+          Claim Approval Master
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <nz-icon nzType="zhihu" />
+          Label Master
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <nz-icon nzType="aliyun" />
+          Registration Screen Config
+        </li>
+      </ul>
+    </li>
+    <li nz-submenu nzTitle="REPORTS" nzIcon="area-chart">
+      <ul>
+        <li nz-submenu nzTitle="Data Download" nzIcon="cloud-download">
+          <ul>
+            <li nz-menu-item routerLink="/customer">
+              <nz-icon nzType="star" />
+              Service Calls Data
+            </li>
+            <li nz-menu-item routerLink="/supplier">
+              <nz-icon nzType="star" />
+              Open Pending Service Calls
+            </li>
+            <li nz-menu-item routerLink="/product">
+              <nz-icon nzType="star" />
+              Download Report
+            </li>
+            <li nz-menu-item routerLink="/product">
+              <nz-icon nzType="star" />
+              SO & Claims Report
+            </li>
+          </ul>
+        </li>
+        <li nz-submenu nzTitle="Extended Warranty Reports" nzIcon="plus-square">
+          <ul>
+            <li nz-menu-item routerLink="/customer">
+              <nz-icon nzType="star" />
+              Search Customer
+            </li>
+            <li nz-menu-item routerLink="/supplier">
+              <nz-icon nzType="star" />
+              Extended Warranty Registeration
+            </li>
+            <li nz-menu-item routerLink="/product">
+              <nz-icon nzType="star" />
+              Extended Warranty Insurance
+            </li>
+            <li nz-menu-item routerLink="/product">
+              <nz-icon nzType="star" />
+              Extended Warranty Member
+            </li>
+            <li nz-menu-item routerLink="/product">
+              <nz-icon nzType="star" />
+              Extended Warranty T&C Upload
+            </li>
+            <li nz-menu-item routerLink="/product">
+              <nz-icon nzType="star" />
+              Extended Warranty Email
+            </li>
+            <li nz-menu-item routerLink="/product">
+              <nz-icon nzType="star" />
+              Additional Warranty Details
+            </li>
+          </ul>
+        </li>
+        <li nz-submenu nzTitle="Claim Reports" nzIcon="dropbox">
+          <ul>
+            <li nz-menu-item routerLink="/customer">
+              <nz-icon nzType="star" />
+              By Claim Type
+            </li>
+            <li nz-menu-item routerLink="/supplier">
+              <nz-icon nzType="star" />
+              By Technician
+            </li>
+            <li nz-menu-item routerLink="/product">
+              <nz-icon nzType="star" />
+              By Claim Status
+            </li>
+          </ul>
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <nz-icon nzType="star" />
+          Service Order By Status
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <nz-icon nzType="star" />
+          Service Order By Type
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <nz-icon nzType="star" />
+          Response Time
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <nz-icon nzType="star" />
+          Repeat Calls Summary
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <nz-icon nzType="star" />
+          Call Taker Efficiency
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <nz-icon nzType="star" />
+          Registered Users
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <nz-icon nzType="star" />
+          Application Users
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <nz-icon nzType="star" />
+          Warranty & Service Registraion
+        </li>
+      </ul>
+    </li>
+    <li nz-submenu nzTitle="SPARES MANAGEMENT" nzIcon="form">
+      <ul>
+        <li nz-submenu nzTitle="Inventory" nzIcon="dropbox">
+          <ul>
+            <li nz-menu-item routerLink="/dashboard">
+              <nz-icon nzType="star" />
+              Dashboard
+            </li>
+            <li nz-menu-item routerLink="/supplier">
+              <nz-icon nzType="star" />
+              Stock Adjustment
+            </li>
+            <li nz-menu-item routerLink="/product">
+              <nz-icon nzType="star" />
+              Stock Upload
+            </li>
+          </ul>
+        </li>
+        <li nz-submenu nzTitle="Order" nzIcon="shopping-cart">
+          <ul>
+            <li nz-menu-item routerLink="/customer">
+              <nz-icon nzType="star" />
+              Create Spare Order
+            </li>
+            <li nz-menu-item routerLink="/supplier">
+              <nz-icon nzType="star" />
+              Approve/Update Order
+            </li>
+            <li nz-menu-item routerLink="/product">
+              <nz-icon nzType="star" />
+              Order Confirmation
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li nz-submenu nzTitle="THIRD PARTY INTERFACE" nzIcon="split-cells">
+      <ul>
+        <li nz-menu-item nzMatchRouter>
+          <nz-icon nzType="star" />
+          Api Log Report
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <nz-icon nzType="star" />
+          File Transfer Audit Report
+        </li>
+      </ul>
+    </li>
+    <li nz-submenu nzTitle="ADMIN" nzIcon="user">
+      <ul>
+        <li nz-submenu nzTitle="Audit Log" nzIcon="dropbox">
+          <ul>
+            <li nz-menu-item routerLink="/customer">
+              <nz-icon nzType="star" />
+              Claim Audit Log
+            </li>
+            <li nz-menu-item routerLink="/supplier">
+              <nz-icon nzType="star" />
+              Service Audit Log
+            </li>
+            <li nz-menu-item routerLink="/product">
+              <nz-icon nzType="star" />
+              Customer Update Audit Log
+            </li>
+            <li nz-menu-item routerLink="/product">
+              <nz-icon nzType="star" />
+              Product Update Audit Log
+            </li>
+            <li nz-menu-item routerLink="/product">
+              <nz-icon nzType="star" />
+              Spare Order Update Audit Log
+            </li>
+          </ul>
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <nz-icon nzType="star" />
+          User Management
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <nz-icon nzType="star" />
+          SQL Data Extraction
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <nz-icon nzType="star" />
+          Down Time Master
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <nz-icon nzType="star" />
+          SMS/WhatsApp Configuration
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <nz-icon nzType="star" />
+          Email Configuration
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <nz-icon nzType="star" />
+          Application Configuration
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <nz-icon nzType="star" />
+          Schedule Job
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <nz-icon nzType="star" />
+          Add Edit Menu Item
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nz-sider>

@@ -1,0 +1,47 @@
+<div nz-row class="complaint-container">
+    <div nz-col [nzXs]="24" [nzSm]="6" [nzMd]="6" [nzLg]="6" [nzXl]="6">
+        <nz-list nzSize="small" [nzSplit]="false">
+            <nz-list-item-meta-title>
+                <nz-icon nzType="folder-open" nzTheme="outline" class="list-icon" />
+                Select Attachment Type
+            </nz-list-item-meta-title>
+            @for (item of data; track item.type) {
+            <nz-list-item class="complaint-list-item" [class.active]="selectedType === item.type"
+                (click)="selectType(item.type)">
+                <nz-list-item-meta-title>
+                    <nz-icon nzType="folder-view" nzTheme="outline" class="list-icon" />
+                    {{ item.type }}
+                </nz-list-item-meta-title>
+            </nz-list-item>
+            }
+        </nz-list>
+    </div>
+    <div nz-col [nzXs]="24" [nzSm]="18" [nzMd]="18" [nzLg]="18" [nzXl]="18">
+        @if (selectedDocuments.length > 0) {
+        <nz-list nzSize="small" [nzSplit]="false">
+            <div nz-row [nzGutter]="12" class="doc-list-row">
+                @for (doc of selectedDocuments; track doc) {
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="12">
+                    <nz-list-item class="complaint-doc-list-item">
+                        <nz-list-item-meta>
+                            <nz-list-item-meta-avatar>
+                                <nz-icon [nzType]="getFileIcon(doc.type)" nzTheme="outline" class="doc-icon" />
+                            </nz-list-item-meta-avatar>
+                            <nz-list-item-meta-title>
+                                {{ doc.name }}
+                            </nz-list-item-meta-title>
+                            <nz-list-item-meta-description>
+                                <span>{{ doc.size }} </span>
+                                <span style="padding-left: 10px;">{{ doc.date | date:'medium'}}</span>
+                            </nz-list-item-meta-description>
+                        </nz-list-item-meta>
+                    </nz-list-item>
+                </div>
+                }
+            </div>
+        </nz-list>
+        } @else {
+        <p>No documents found for selected type.</p>
+        }
+    </div>
+</div>

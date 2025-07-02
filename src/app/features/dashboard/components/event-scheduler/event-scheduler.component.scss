@@ -1,0 +1,21 @@
+::ng-deep .ant-picker-cell {
+    border: 1px solid gray;
+}
+
+::ng-deep .ant-picker-calendar .ant-picker-panel .ant-picker-body {
+    margin: 0px 10px;
+}
+
+::ng-deep .ant-picker-calendar-header {
+    padding: 10px 10px;
+    background-color: white;
+}
+
+
+::ng-deep .ant-picker-calendar-full .ant-picker-panel .ant-picker-cell-selected .ant-picker-calendar-date,
+.ant-picker-calendar-full .ant-picker-panel .ant-picker-cell-selected:hover .ant-picker-calendar-date,
+.ant-picker-calendar-full .ant-picker-panel .ant-picker-cell-selected .ant-picker-calendar-date-today,
+.ant-picker-calendar-full .ant-picker-panel .ant-picker-cell-selected:hover .ant-picker-calendar-date-today {
+    margin: 0px;
+    background: #d1ddde;
+}

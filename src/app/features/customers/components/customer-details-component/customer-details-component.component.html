@@ -1,0 +1,42 @@
+<div nz-col nzSpan="24">
+  <div nz-row class="complaint-header sticky-tab-header">
+    <span class="complaint-id">
+      <nz-icon nzType="left-square" nzTheme="outline" routerLink="/customers/table" />
+      <span class="complaint-id-text">#{{customerId}}</span>
+    </span>
+    
+    <!-- Tab layout for Desktop -->
+    <div class="tab-desktop">
+      <nz-tabset class="complaint-tabset" [nzSelectedIndex]="selectedTabIndex"
+        (nzSelectedIndexChange)="onTabChange($event)">
+        <nz-tab nzTitle="Overview"></nz-tab>
+        <nz-tab nzTitle="History"></nz-tab>
+        <nz-tab nzTitle="Addresses"></nz-tab>
+        <nz-tab nzTitle="Products"></nz-tab>
+        <nz-tab nzTitle="Consent"></nz-tab>
+      </nz-tabset>
+    </div>
+
+    <!-- Dropdown for Mobile/Tablet -->
+    <div class="tab-mobile">
+      <button nz-button nzType="text" nz-dropdown nzTrigger="click" [nzPlacement]="'bottomRight'"
+        [nzDropdownMenu]="tabMenu">
+        <span>{{ selectedTabLabel }}</span>
+        <nz-icon nzType="bars" nzTheme="outline" />
+      </button>
+
+      <nz-dropdown-menu #tabMenu="nzDropdownMenu">
+        <ul nz-menu>
+          <li nz-menu-item (click)="selectTab(0, 'Overview')">Overview</li>
+          <li nz-menu-item (click)="selectTab(1, 'History')">History</li>
+          <li nz-menu-item (click)="selectTab(2, 'Addresses')">Addresses</li>
+          <li nz-menu-item (click)="selectTab(3, 'Products')">Products</li>
+          <li nz-menu-item (click)="selectTab(4, 'Consent')">Consent</li>
+        </ul>
+      </nz-dropdown-menu>
+    </div>
+  </div>
+  <div class="complaint-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

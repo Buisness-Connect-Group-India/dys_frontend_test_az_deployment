@@ -1,0 +1,177 @@
+$mobile-breakpoint: 576px;
+$tablet-breakpoint: 992px;
+
+.main-cards,
+.expand-sub-card,
+.collapsed-sub-card {
+  margin-top: 7px;
+  margin-right: 7px;
+  border-radius: 5px;
+  border: 1px solid #d9d9d9;
+
+  div {
+    line-height: 25px;
+  }
+
+  &:hover {
+    border-color: #FF6D43;
+  }
+}
+
+.collapsed-sub-card {
+  border: 2px solid #ffa39e;
+}
+
+.view-more-text {
+  opacity: 0.9;
+  color: #1C7C9F;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.ant-tabs-top,
+.ant-tabs-bottom {
+  line-height: 16px !important;
+  margin-bottom: 0px;
+  font-weight: 500;
+}
+
+::ng-deep .ant-tabs-nav {
+  margin-bottom: 0 !important;
+}
+
+::ng-deep .ant-tabs-nav::before {
+  border-bottom: none !important;
+}
+
+.complaint-left-card {
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: calc(100vh - 90px);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (max-width: $mobile-breakpoint) {
+    display: none;
+  }
+}
+
+.complaint-right-card {
+  padding: 0;
+  margin: 0;
+  height: calc(100vh - 90px);
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  @media (max-width: $mobile-breakpoint) {
+    height: auto;
+  }
+}
+
+.complaint-header {
+  display: flex;
+  justify-content: space-between; // ✅ Push actions to the right
+  align-items: center;
+  background-color: white;
+  margin-top: 7px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+  flex-wrap: nowrap;
+
+  @media (max-width: $mobile-breakpoint) {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 10px;
+  }
+}
+
+.sticky-tab-header {
+  position: sticky;
+  top: 0px;
+  z-index: 1000; 
+  background-color: white;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.complaint-actions {
+  display: flex;
+  gap: 8px;
+  padding-top: 5px;
+  padding-right: 10px;
+  margin-left: auto; // ✅ Ensures right alignment on desktop
+  align-self: flex-start;
+
+  @media (max-width: $mobile-breakpoint) {
+    padding-bottom: 5px !important;
+    align-self: flex-end; // ✅ Aligns to the right even on smaller screens
+    padding-right: 0;
+  }
+}
+
+.complaint-id {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+
+  nz-icon {
+    margin-right: 10px;
+    font-size: 25px;
+    color: #1C7C9F;
+  }
+}
+
+.complaint-id-text {
+  font-size: 16px;
+  color: #1C7C9F;
+  font-weight: 500;
+}
+
+.complaint-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  @media (max-width: $mobile-breakpoint) {
+    overflow: visible;
+  }
+}
+
+.select-input {
+  width: 125px !important;
+}
+
+// Show tabset only on desktop
+.tab-desktop {
+  display: block;
+
+  @media (max-width: $tablet-breakpoint) {
+    display: none !important;
+  }
+}
+
+// Show dropdown only on tablet/mobile
+.tab-mobile {
+  display: none;
+
+  @media (max-width: $tablet-breakpoint) {
+    display: block;
+  }
+
+}

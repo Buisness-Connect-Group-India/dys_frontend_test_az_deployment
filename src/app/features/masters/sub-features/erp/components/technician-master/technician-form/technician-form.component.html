@@ -1,0 +1,350 @@
+<ng-container *ngIf="operationType === OperationType.Create || operationType === OperationType.Edit">
+    <div class="drawer-body">
+        <form [formGroup]="technicianForm" nz-form [nzLayout]="'vertical'">
+            <div nz-row [nzGutter]="12">
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label appAsterisk>Technician Code</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="technician-code" formControlName="techCode"
+                                placeholder="Enter technician code" />
+                            <ng-container
+                                *ngIf="technicianForm.controls['techCode']?.invalid && (technicianForm.controls['techCode']?.dirty || technicianForm.controls['techCode']?.touched)">
+                                <div class="error-text">Technician code is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label appAsterisk>Technician Name</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="technician-name" formControlName="techName"
+                                placeholder="Enter technician name" />
+                            <ng-container
+                                *ngIf="technicianForm.controls['techName']?.invalid && (technicianForm.controls['techName']?.dirty || technicianForm.controls['techName']?.touched)">
+                                <div class="error-text">Technician name is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label appAsterisk>Category</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="category" formControlName="techCat" placeholder="Enter category" />
+                            <ng-container
+                                *ngIf="technicianForm.controls['techCat']?.invalid && (technicianForm.controls['techCat']?.dirty || technicianForm.controls['techCat']?.touched)">
+                                <div class="error-text">Category name is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <app-dynamic-dropdown [formGroup]="technicianForm" controlName="branchCode" label="Branch"
+                        dropdownType="branch" sourceType="individual" valueKey="value" labelKey="text"
+                        [required]="true"></app-dynamic-dropdown>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label appAsterisk>Customer Code</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="customer-code" formControlName="custCode"
+                                placeholder="Enter customer code" />
+                            <ng-container
+                                *ngIf="technicianForm.controls['custCode']?.invalid && (technicianForm.controls['custCode']?.dirty || technicianForm.controls['custCode']?.touched)">
+                                <div class="error-text">Customer code is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label appAsterisk>Vendor Code</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="vendor-code" formControlName="vendCode"
+                                placeholder="Enter vendor code" />
+                            <ng-container
+                                *ngIf="technicianForm.controls['vendCode']?.invalid && (technicianForm.controls['vendCode']?.dirty || technicianForm.controls['vendCode']?.touched)">
+                                <div class="error-text">Vendor code is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label appAsterisk>Address Line 1</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="address-line-1" formControlName="addr1"
+                                placeholder="Enter address line 1" />
+                            <ng-container
+                                *ngIf="technicianForm.controls['addr1']?.invalid && (technicianForm.controls['addr1']?.dirty || technicianForm.controls['addr1']?.touched)">
+                                <div class="error-text">Address Line 1 is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label appAsterisk>Address Line 2</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="address-line-2" formControlName="addr2"
+                                placeholder="Enter address line 2" />
+                            <ng-container
+                                *ngIf="technicianForm.controls['addr2']?.invalid && (technicianForm.controls['addr2']?.dirty || technicianForm.controls['addr2']?.touched)">
+                                <div class="error-text">Address Line 2 is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Address Line 3</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="address-line-3" formControlName="addr3"
+                                placeholder="Enter address line 3" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <app-dynamic-dropdown [formGroup]="technicianForm" controlName="countryCode" label="Country"
+                        dropdownType="country" sourceType="parent" valueKey="countryCode" labelKey="countryName"
+                        [required]="true"></app-dynamic-dropdown>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <app-dynamic-dropdown [formGroup]="technicianForm" controlName="stateCode" label="State"
+                        dropdownType="state" sourceType="child" valueKey="value" labelKey="text"
+                        [parentValue]="technicianForm.get('countryCode')?.value"
+                        [required]="true"></app-dynamic-dropdown>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <app-dynamic-dropdown [formGroup]="technicianForm" controlName="cityCode" label="City"
+                        dropdownType="city" sourceType="child" valueKey="value" labelKey="text"
+                        [parentValue]="technicianForm.get('stateCode')?.value" [required]="true"></app-dynamic-dropdown>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label appAsterisk>Postal Code</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="postal-code" formControlName="postCode"
+                                placeholder="Enter postal code" />
+                            <ng-container
+                                *ngIf="technicianForm.controls['postCode']?.invalid && (technicianForm.controls['postCode']?.dirty || technicianForm.controls['postCode']?.touched)">
+                                <div class="error-text">Postal Code is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Office Ph. No</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="office-phone" formControlName="offNo"
+                                placeholder="Enter office phone number" />
+                            <ng-container
+                                *ngIf="technicianForm.controls['offNo']?.invalid && (technicianForm.controls['offNo']?.dirty || technicianForm.controls['offNo']?.touched)">
+                                <div class="error-text">Office Phone Number is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Office Ext. No</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="office-ext" formControlName="extNo"
+                                placeHolder="Enter office extension number">
+                            <ng-container
+                                *ngIf="technicianForm.controls['extNo']?.invalid && (technicianForm.controls['extNo']?.dirty || technicianForm.controls['offNo']?.touched)">
+                                <div class="error-text">Office Phone Number is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label appAsterisk>Mobile No</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="mobile-no" formControlName="mobileNo"
+                                placeholder="Enter mobile number" />
+                            <ng-container
+                                *ngIf="technicianForm.controls['mobileNo']?.invalid && (technicianForm.controls['mobileNo']?.dirty || technicianForm.controls['mobileNo']?.touched)">
+                                <div class="error-text">Mobile Number is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Telephone. No</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="phone-no" formControlName="resNo" placeholder="Enter phone number" />
+                            <ng-container
+                                *ngIf="technicianForm.controls['resNo']?.invalid && (technicianForm.controls['resNo']?.dirty || technicianForm.controls['resNo']?.touched)">
+                                <div class="error-text">Telephone Number is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Fax. No</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="fax-no" formControlName="faxNo" placeHolder="Enter fax number">
+                            <ng-container
+                                *ngIf="technicianForm.controls['faxNo']?.invalid && (technicianForm.controls['faxNo']?.dirty || technicianForm.controls['faxNo']?.touched)">
+                                <div class="error-text">Fax Number is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label appAsterisk>Email ID</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="email-id" formControlName="emailId" placeholder="Enter email address" />
+                            <ng-container
+                                *ngIf="technicianForm.controls['emailId']?.invalid && (technicianForm.controls['emailId']?.dirty || technicianForm.controls['emailId']?.touched)">
+                                <div class="error-text">Email Number is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label appAsterisk>Contact Person 1</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="contact-person-1" formControlName="contactPer1"
+                                placeholder="Enter contact person 1" />
+                            <ng-container
+                                *ngIf="technicianForm.controls['contactPer1']?.invalid && (technicianForm.controls['contactPer1']?.dirty || technicianForm.controls['contactPer1']?.touched)">
+                                <div class="error-text">Contact Person 1 is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Contact Person 2</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="contact-person-2" formControlName="contactPer2"
+                                placeholder="Enter contact person 2" />
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label appAsterisk>Tax No</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="tax-no" formControlName="taxNo" placeholder="Enter tax number" />
+                            <ng-container
+                                *ngIf="technicianForm.controls['taxNo']?.invalid && (technicianForm.controls['taxNo']?.dirty || technicianForm.controls['taxNo']?.touched)">
+                                <div class="error-text">Tax Number is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label appAsterisk>Bal Cr Limit</nz-form-label>
+                        <nz-form-control>
+                            <input nz-input id="bal-cr-limit" formControlName="balCrLimit"
+                                placeholder="Enter balance credit limit" />
+                            <ng-container
+                                *ngIf="technicianForm.controls['balCrLimit']?.invalid && (technicianForm.controls['balCrLimit']?.dirty || technicianForm.controls['balCrLimit']?.touched)">
+                                <div class="error-text">Balance Credit Limit is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="8" [nzXl]="8">
+                    <nz-form-item>
+                        <nz-form-label>Status</nz-form-label>
+                        <nz-form-control>
+                            Inactive
+                            <nz-switch class="nz-switch" formControlName="activeStatus"></nz-switch>
+                            Active
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="drawer-footer">
+        <button nz-button nzType="primary" class="cancel_btn" (click)="onCancel()">Cancel</button>
+        <button nz-button nzType="primary" class="reset_btn" (click)="onReset()">Reset</button>
+        <button nz-button nzType="primary" class="submit_btn" (click)="onSubmit()"
+            [disabled]="technicianForm.invalid">{{operationType ===
+            OperationType.Edit ? 'Update': 'Submit'}}</button>
+    </div>
+</ng-container>
+
+<!-- Technicial Details View  -->
+<ng-container *ngIf="operationType === OperationType.View">
+    <nz-descriptions class="view-details-drawer"  [nzColumn]="{ xxl: 3, xl: 3, lg: 3, md: 2, sm: 1, xs:1  }" nzLayout="vertical">
+        <nz-descriptions-item nzTitle="Tech Code">
+            TECH-00123
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Tech Name">
+            John Doe
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Tech Category">
+            HVAC Specialist
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Branch">
+            Toronto Branch
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Vendor Code">
+            VEND-56789
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Address">
+            123 Main Street, Suite 400, Downtown Unit No 8,8,9,0 Ground Flour shaligram plus opp vishwakarma ahamdabad
+            gujrat india-876554
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="City">
+            Toronto
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="State">
+            Ontario
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Country">
+            Canada
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Postal Code">
+            M5J 2N8
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Office Pn. No">
+            (416) 555-1234
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Office Ext. No">
+            204
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Mobile No">
+            +1 (647) 987-6543
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Fax. No">
+            (416) 555-6789
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Email ID">
+            johndoe&#64;example.com
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Contact Person 1">
+            Jane Smith
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Contact Person 2">
+            Mark Wilson
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Tax No">
+            TX-00991-CA
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Balance Cr Limit">
+            $15,000.00 CAD
+        </nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Active Status">
+            Active
+        </nz-descriptions-item>
+    </nz-descriptions>
+    <div class="drawer-footer">
+        <button nz-button nzType="primary" class="cancel_btn" (click)="onCancel()">Cancel</button>
+    </div>
+</ng-container>

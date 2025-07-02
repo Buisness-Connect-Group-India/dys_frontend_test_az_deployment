@@ -1,0 +1,122 @@
+<ng-container *ngIf="operationType === OperationType.Create || operationType === OperationType.Edit">
+    <div class="drawer-body">
+        <form [formGroup]="countryForm" nz-form [nzLayout]="'vertical'">
+            <div nz-row [nzGutter]="12">
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="12">
+                    <nz-form-item>
+                        <nz-form-label nzFor="countryCode" appAsterisk>
+                            Country Code
+                        </nz-form-label>
+                        <nz-form-control>
+                            <input nz-input type="text" id="countryCode" name="countryCode"
+                                formControlName="countryCode" placeholder="Enter Country Code"
+                                [ngClass]="operationType === OperationType.Edit?'read-only':''"
+                                [readOnly]="operationType === OperationType.Edit" />
+                            <ng-container
+                                *ngIf="countryForm.controls['countryCode']?.invalid && (countryForm.controls['countryCode']?.dirty || countryForm.controls['countryCode']?.touched)">
+                                <div class="error-text">Country code is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="12">
+                    <nz-form-item>
+                        <nz-form-label nzFor="countryName" appAsterisk>
+                            Country Name
+                        </nz-form-label>
+                        <nz-form-control>
+                            <input nz-input type="text" id="countryName" name="countryName"
+                                formControlName="countryName" placeholder="Enter Country Name" />
+                            <ng-container
+                                *ngIf="countryForm.controls['countryName']?.invalid && (countryForm.controls['countryName']?.dirty || countryForm.controls['countryName']?.touched)">
+                                <div class="error-text">Country name is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="12">
+                    <nz-form-item>
+                        <nz-form-label nzFor="didCode" appAsterisk>
+                            DID Code
+                        </nz-form-label>
+                        <nz-form-control>
+                            <input nz-input type="text" id="didCode" name="didCode" formControlName="didCode"
+                                placeholder="Enter DID Code" />
+                            <ng-container
+                                *ngIf="countryForm.controls['didCode']?.invalid && (countryForm.controls['didCode']?.dirty || countryForm.controls['didCode']?.touched)">
+                                <div class="error-text">DID code is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="12">
+                    <nz-form-item>
+                        <nz-form-label nzFor="currCode" appAsterisk>
+                            Currency Code
+                        </nz-form-label>
+                        <nz-form-control>
+                            <input nz-input type="text" id="currCode" name="currCode" formControlName="currCode"
+                                placeholder="Enter Currency Code" />
+                            <ng-container
+                                *ngIf="countryForm.controls['currCode']?.invalid && (countryForm.controls['currCode']?.dirty || countryForm.controls['currCode']?.touched)">
+                                <div class="error-text">Currency code is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="12">
+                    <nz-form-item>
+                        <nz-form-label nzFor="langCode" appAsterisk>
+                            Language Code
+                        </nz-form-label>
+                        <nz-form-control>
+                            <input nz-input type="text" id="langCode" name="langCode" formControlName="langCode"
+                                placeholder="Enter Language Code" />
+                            <ng-container
+                                *ngIf="countryForm.controls['langCode']?.invalid && (countryForm.controls['langCode']?.dirty || countryForm.controls['langCode']?.touched)">
+                                <div class="error-text">Language code is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="12">
+                    <nz-form-item>
+                        <nz-form-label nzFor="language" appAsterisk>
+                            Language
+                        </nz-form-label>
+                        <nz-form-control>
+                            <input nz-input type="text" id="language" name="language" formControlName="language"
+                                placeholder="Enter Language" />
+                            <ng-container
+                                *ngIf="countryForm.controls['language']?.invalid && (countryForm.controls['language']?.dirty || countryForm.controls['language']?.touched)">
+                                <div class="error-text">Language is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" [nzXl]="12">
+                    <nz-form-item>
+                        <nz-form-label nzFor="timeDiff" appAsterisk>
+                            Time Diff
+                        </nz-form-label>
+                        <nz-form-control>
+                            <input nz-input type="text" id="timeDiff" name="timeDiff" formControlName="timeDiff"
+                                placeholder="Enter Time Difference (e.g., +05:30)" />
+                            <ng-container
+                                *ngIf="countryForm.controls['timeDiff']?.invalid && (countryForm.controls['timeDiff']?.dirty || countryForm.controls['timeDiff']?.touched)">
+                                <div class="error-text">Time difference is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="medium-drawer-footer">
+        <button nz-button nzType="primary" class="cancel_btn" (click)="onCancel()">Cancel</button>
+        <button nz-button nzType="primary" class="reset_btn" (click)="onReset()">Reset</button>
+        <button nz-button nzType="primary" class="submit_btn" (click)="onSubmit()"
+            [disabled]="countryForm.invalid">{{operationType ===
+            OperationType.Edit ? 'Update': 'Submit'}}</button>
+    </div>
+</ng-container>

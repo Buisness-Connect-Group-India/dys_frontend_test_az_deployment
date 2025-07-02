@@ -1,0 +1,46 @@
+<ng-container *ngIf="operationType === OperationType.Create || operationType === OperationType.Edit">
+    <div class="drawer-body">
+        <form [formGroup]="productGroupForm" nz-form [nzLayout]="'vertical'">
+            <div nz-row [nzGutter]="12">
+                <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]="24" [nzXl]="24">
+                    <nz-form-item>
+                        <nz-form-label nzFor="prodGrpCode" appAsterisk>
+                            Product Group Code
+                        </nz-form-label>
+                        <nz-form-control>
+                            <input nz-input type="text" id="prodGrpCode" name="prodGrpCode"  [ngClass]="operationType === OperationType.Edit?'read-only':''"
+                                [readOnly]="operationType === OperationType.Edit" 
+                                formControlName="prodGrpCode" placeholder="Enter product group code" />
+                            <ng-container
+                                *ngIf="productGroupForm.controls['prodGrpCode']?.invalid && (productGroupForm.controls['prodGrpCode']?.dirty || productGroupForm.controls['prodGrpCode']?.touched)">
+                                <div class="error-text">Product group code is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+                <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" [nzLg]="24" [nzXl]="24">
+                    <nz-form-item>
+                        <nz-form-label nzFor="prodGrpDesc" appAsterisk>
+                            Product Group Description
+                        </nz-form-label>
+                        <nz-form-control>
+                            <input nz-input type="text" id="prodGrpDesc" name="prodGrpDesc"
+                                formControlName="prodGrpDesc" placeholder="Enter product group description" />
+                            <ng-container
+                                *ngIf="productGroupForm.controls['prodGrpDesc']?.invalid && (productGroupForm.controls['prodGrpDesc']?.dirty || productGroupForm.controls['prodGrpDesc']?.touched)">
+                                <div class="error-text">Product group description is required.</div>
+                            </ng-container>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="small-drawer-footer">
+        <button nz-button nzType="primary" class="cancel_btn" (click)="onCancel()">Cancel</button>
+        <button nz-button nzType="primary" class="reset_btn" (click)="onReset()">Reset</button>
+        <button nz-button nzType="primary" class="submit_btn" (click)="onSubmit()"
+            [disabled]="productGroupForm.invalid">{{operationType ===
+            OperationType.Edit ? 'Update': 'Submit'}}</button>
+    </div>
+</ng-container>
